@@ -10,6 +10,8 @@
 		364F95B01A56580C007C93B6 /* Logger.h in Headers */ = {isa = PBXBuildFile; fileRef = 364F95AF1A56580C007C93B6 /* Logger.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		364F95B61A56580C007C93B6 /* Logger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 364F95AA1A56580C007C93B6 /* Logger.framework */; };
 		364F95BD1A56580C007C93B6 /* LoggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364F95BC1A56580C007C93B6 /* LoggerTests.swift */; };
+		364F95D01A565840007C93B6 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364F95CF1A565840007C93B6 /* Logger.swift */; };
+		36DC19AE1A566FBD004CF07D /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364F95CF1A565840007C93B6 /* Logger.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +31,7 @@
 		364F95B51A56580C007C93B6 /* LoggerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LoggerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		364F95BB1A56580C007C93B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		364F95BC1A56580C007C93B6 /* LoggerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerTests.swift; sourceTree = "<group>"; };
+		364F95CF1A565840007C93B6 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				364F95AF1A56580C007C93B6 /* Logger.h */,
+				364F95CF1A565840007C93B6 /* Logger.swift */,
 				364F95AD1A56580C007C93B6 /* Supporting Files */,
 			);
 			path = Logger;
@@ -209,6 +213,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				364F95D01A565840007C93B6 /* Logger.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -217,6 +222,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				364F95BD1A56580C007C93B6 /* LoggerTests.swift in Sources */,
+				36DC19AE1A566FBD004CF07D /* Logger.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,6 +325,7 @@
 		364F95C11A56580C007C93B6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -328,12 +335,14 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		364F95C21A56580C007C93B6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -395,6 +404,7 @@
 				364F95C21A56580C007C93B6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		364F95C31A56580C007C93B6 /* Build configuration list for PBXNativeTarget "LoggerTests" */ = {
 			isa = XCConfigurationList;
@@ -403,6 +413,7 @@
 				364F95C51A56580C007C93B6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

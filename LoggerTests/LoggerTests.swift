@@ -9,6 +9,7 @@
 import UIKit
 import XCTest
 
+
 class LoggerTests: XCTestCase {
     
     override func setUp() {
@@ -21,16 +22,72 @@ class LoggerTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        XCTAssert(true, "Pass")
+    func testCriticalLogLevel() {
+        
+        Logger.currentLevel = Logger.logLevelCritical
+        
+        XCTAssertTrue(Logger.logLevelCritical.log("critical", logPrefix: "Test"), "Critical logs should be shown")
+        XCTAssertFalse(Logger.logLevelError.log("error", logPrefix: "Test"), "Error logs should not be shown")
+        XCTAssertFalse(Logger.logLevelWarn.log("warn", logPrefix: "Test"), "Warning logs should not be shown")
+        XCTAssertFalse(Logger.logLevelInfo.log("info", logPrefix: "Test"), "Info logs should not be shown")
+        XCTAssertFalse(Logger.logLevelVerbose.log("verbose", logPrefix: "Test"), "Verbose logs should not be shown")
+        
+        
     }
     
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock() {
-            // Put the code you want to measure the time of here.
-        }
+    func testErrorLogLevel() {
+        
+        Logger.currentLevel = Logger.logLevelError
+        
+        XCTAssertTrue(Logger.logLevelCritical.log("critical", logPrefix: "Test"), "Critical logs should be shown")
+        XCTAssertTrue(Logger.logLevelError.log("error", logPrefix: "Test"), "Error logs should be shown")
+        XCTAssertFalse(Logger.logLevelWarn.log("warn", logPrefix: "Test"), "Warning logs should not be shown")
+        XCTAssertFalse(Logger.logLevelInfo.log("info", logPrefix: "Test"), "Info logs should not be shown")
+        XCTAssertFalse(Logger.logLevelVerbose.log("verbose", logPrefix: "Test"), "Verbose logs should not be shown")
+        
+        
     }
+    
+    func testWarningLogLevel() {
+        
+        Logger.currentLevel = Logger.logLevelWarn
+        
+        XCTAssertTrue(Logger.logLevelCritical.log("critical", logPrefix: "Test"), "Critical logs should be shown")
+        XCTAssertTrue(Logger.logLevelError.log("error", logPrefix: "Test"), "Error logs should be shown")
+        XCTAssertTrue(Logger.logLevelWarn.log("warn", logPrefix: "Test"), "Warning logs should be shown")
+        XCTAssertFalse(Logger.logLevelInfo.log("info", logPrefix: "Test"), "Info logs should not be shown")
+        XCTAssertFalse(Logger.logLevelVerbose.log("verbose", logPrefix: "Test"), "Verbose logs should not be shown")
+        
+        
+    }
+    
+    func testInfoLogLevel() {
+        
+        Logger.currentLevel = Logger.logLevelInfo
+        
+        XCTAssertTrue(Logger.logLevelCritical.log("critical", logPrefix: "Test"), "Critical logs should be shown")
+        XCTAssertTrue(Logger.logLevelError.log("error", logPrefix: "Test"), "Error logs should be shown")
+        XCTAssertTrue(Logger.logLevelWarn.log("warn", logPrefix: "Test"), "Warning logs should be shown")
+        XCTAssertTrue(Logger.logLevelInfo.log("info", logPrefix: "Test"), "Info logs should be shown")
+        XCTAssertFalse(Logger.logLevelVerbose.log("verbose", logPrefix: "Test"), "Verbose logs should not be shown")
+        
+        
+    }
+    
+    func testVerboseLogLevel() {
+        
+        Logger.currentLevel = Logger.logLevelVerbose
+        
+        XCTAssertTrue(Logger.logLevelCritical.log("critical", logPrefix: "Test"), "Critical logs should be shown")
+        XCTAssertTrue(Logger.logLevelError.log("error", logPrefix: "Test"), "Error logs should be shown")
+        XCTAssertTrue(Logger.logLevelWarn.log("warn", logPrefix: "Test"), "Warning logs should be shown")
+        XCTAssertTrue(Logger.logLevelInfo.log("info", logPrefix: "Test"), "Info logs should be shown")
+        XCTAssertTrue(Logger.logLevelVerbose.log("verbose", logPrefix: "Test"), "Verbose logs should be shown")
+        
+        
+    }
+    
+
+    
     
 }
