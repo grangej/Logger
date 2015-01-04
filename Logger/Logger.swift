@@ -18,7 +18,7 @@ public enum Logger: Int {
     
     
     /// Log the given message depending on the curret log level
-    func log(let logMessage: String, logPrefix: String?) -> Bool {
+    public func log(let logMessage: String, logPrefix: String?) -> Bool {
         switch self {
         case .logLevelCritical:
             logWithMessage("Fatal: \(logMessage)", logPrefix: logPrefix)
