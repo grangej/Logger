@@ -3,7 +3,7 @@
 //  LoggerTests
 //
 //  Created by John Grange on 1/1/15.
-//  Copyright (c) 2015 Y Media Labs. All rights reserved.
+//  Copyright (c) 2015 SD Networks All rights reserved.
 //
 
 import UIKit

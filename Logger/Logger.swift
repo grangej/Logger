@@ -3,7 +3,7 @@
 //  Logger
 //
 //  Created by John Grange on 1/1/15.
-//  Copyright (c) 2015 Y Media Labs. All rights reserved.
+//  Copyright (c) 2015 SD Networks All rights reserved.
 //
 
 import Foundation
@@ -56,15 +56,15 @@ public enum Logger: Int {
         }
     }
     
-    internal func logWithMessage(logMessage : String!, logPrefix: String?) {
+    internal func logWithMessage(logMessage : String, logPrefix: String?) {
         
         if let prefixMsg = logPrefix {
             
-            println("\(prefixMsg)-\(logMessage)")
+            print("\(prefixMsg)-\(logMessage)")
         }
         else {
             
-            println("\(logMessage)")
+            print("\(logMessage)")
         }
     }
 
