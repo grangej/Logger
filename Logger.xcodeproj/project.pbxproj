@@ -8,21 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		364F95B01A56580C007C93B6 /* Logger.h in Headers */ = {isa = PBXBuildFile; fileRef = 364F95AF1A56580C007C93B6 /* Logger.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		364F95B61A56580C007C93B6 /* Logger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 364F95AA1A56580C007C93B6 /* Logger.framework */; };
 		364F95BD1A56580C007C93B6 /* LoggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364F95BC1A56580C007C93B6 /* LoggerTests.swift */; };
 		364F95D01A565840007C93B6 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364F95CF1A565840007C93B6 /* Logger.swift */; };
 		36DC19AE1A566FBD004CF07D /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364F95CF1A565840007C93B6 /* Logger.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		364F95B71A56580C007C93B6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 364F95A11A56580C007C93B6 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 364F95A91A56580C007C93B6;
-			remoteInfo = Logger;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		364F95AA1A56580C007C93B6 /* Logger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Logger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -46,7 +35,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				364F95B61A56580C007C93B6 /* Logger.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,7 +137,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				364F95B81A56580C007C93B6 /* PBXTargetDependency */,
 			);
 			name = LoggerTests;
 			productName = LoggerTests;
@@ -227,14 +214,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		364F95B81A56580C007C93B6 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 364F95A91A56580C007C93B6 /* Logger */;
-			targetProxy = 364F95B71A56580C007C93B6 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		364F95BE1A56580C007C93B6 /* Debug */ = {
