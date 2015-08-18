@@ -12,7 +12,7 @@ import Foundation
 public enum Logger: Int {
 
 
-    static var currentLevel: Logger = .logLevelInfo
+    static var currentLevel: Logger = .logLevelVerbose
 
     case logLevelCritical, logLevelError, logLevelWarn, logLevelInfo, logLevelVerbose
     
