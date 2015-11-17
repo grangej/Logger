@@ -34,7 +34,7 @@ public enum Logger: Int {
                 Logger.currentLevel == .logLevelError {
                     return false
             }
-            logWithMessage("Warm: \(logMessage)", logPrefix: logPrefix)
+            logWithMessage("Warn: \(logMessage)", logPrefix: logPrefix)
             return true
         case .logLevelInfo:
             if Logger.currentLevel == .logLevelCritical ||
