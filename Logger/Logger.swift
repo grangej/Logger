@@ -8,11 +8,51 @@
 
 import Foundation
 
+public extension ErrorType {
+    
+    func logError() {
+        
+        if let resultError = self as? ErrorProtocal,
+            let debugError = self as? CustomDebugStringConvertible
+        {
+            
+            Logger.logLevelError.log(debugError.debugDescription, logPrefix: resultError.errorDomain)
+            
+        }
+        else {
+            
+            let error = self as NSError
+            
+            Logger.logLevelError.log(error.localizedDescription, logPrefix: error.domain)
+        }
+    }
+}
 
 public enum Logger: Int {
 
 
     public static var currentLevel: Logger = .logLevelVerbose
+    public static var userIdentifier: String = "No Identifier Set" {
+        
+        didSet {
+            
+            CrashlyticsRecorder.sharedInstance?.setUserIdentifier(userIdentifier)
+        }
+    }
+    public static var userEmail: String = "No Email Set" {
+        
+        didSet {
+            
+            CrashlyticsRecorder.sharedInstance?.setUserEmail(userEmail)
+        }
+    }
+    public static var userName: String = " No Name Set" {
+        
+        didSet {
+            
+            CrashlyticsRecorder.sharedInstance?.setUserName(userName)
+        }
+    }
 
     case logLevelCritical, logLevelError, logLevelWarn, logLevelInfo, logLevelVerbose
     
@@ -56,16 +96,33 @@ public enum Logger: Int {
         }
     }
     
-    internal func logWithMessage(logMessage : String, logPrefix: String?) {
+    internal func logWithMessage(logMessage : String, logPrefix: String?, errorCode: Int? = 0) {
+        
+        let finalMessage: String
         
         if let prefixMsg = logPrefix {
             
-            print("\(prefixMsg)-\(logMessage)")
+            finalMessage = "\(prefixMsg)-\(logMessage)"
         }
         else {
             
-            print("\(logMessage)")
+            finalMessage = "\(logMessage)"
+        }
+        
+        switch self {
+            
+        case .logLevelError, .logLevelCritical:
+            
+            CrashlyticsRecorder.sharedInstance?.recordError(logMessage, domain: logPrefix ?? "com.lifelock.Logger")
+            
+            fallthrough
+            
+        default:
+            
+            print(finalMessage)
         }
     }
+    
+    
 
 }
