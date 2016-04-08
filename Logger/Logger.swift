@@ -31,7 +31,13 @@ public extension ErrorType {
 public enum Logger: Int {
 
 
-    public static var currentLevel: Logger = .logLevelVerbose
+    public static var currentLevel: Logger = .logLevelWarn {
+        
+        didSet {
+            
+            print("Set level to: \(currentLevel)")
+        }
+    }
     public static var userIdentifier: String = "No Identifier Set" {
         
         didSet {
