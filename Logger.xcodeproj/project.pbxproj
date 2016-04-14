@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B3AF9E51CC03AA30072D326 /* SumoLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3AF9E41CC03AA30072D326 /* SumoLogger.swift */; };
+		1B3AF9E61CC03AA30072D326 /* SumoLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3AF9E41CC03AA30072D326 /* SumoLogger.swift */; };
 		364AC5881C80985A00CD14CA /* CrashlyticsRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364AC5871C80985A00CD14CA /* CrashlyticsRecorder.swift */; };
 		364AC58A1C809B8C00CD14CA /* ErrorProtocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364AC5891C809B8C00CD14CA /* ErrorProtocal.swift */; };
 		364F95B01A56580C007C93B6 /* Logger.h in Headers */ = {isa = PBXBuildFile; fileRef = 364F95AF1A56580C007C93B6 /* Logger.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -16,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1B3AF9E41CC03AA30072D326 /* SumoLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SumoLogger.swift; sourceTree = "<group>"; };
 		364AC5871C80985A00CD14CA /* CrashlyticsRecorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrashlyticsRecorder.swift; sourceTree = "<group>"; };
 		364AC5891C809B8C00CD14CA /* ErrorProtocal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorProtocal.swift; sourceTree = "<group>"; };
 		364F95AA1A56580C007C93B6 /* Logger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Logger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -70,6 +73,7 @@
 				364F95CF1A565840007C93B6 /* Logger.swift */,
 				364AC5871C80985A00CD14CA /* CrashlyticsRecorder.swift */,
 				364AC5891C809B8C00CD14CA /* ErrorProtocal.swift */,
+				1B3AF9E41CC03AA30072D326 /* SumoLogger.swift */,
 				364F95AD1A56580C007C93B6 /* Supporting Files */,
 			);
 			path = Logger;
@@ -210,6 +214,7 @@
 				364F95D01A565840007C93B6 /* Logger.swift in Sources */,
 				364AC5881C80985A00CD14CA /* CrashlyticsRecorder.swift in Sources */,
 				364AC58A1C809B8C00CD14CA /* ErrorProtocal.swift in Sources */,
+				1B3AF9E51CC03AA30072D326 /* SumoLogger.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -218,6 +223,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				364F95BD1A56580C007C93B6 /* LoggerTests.swift in Sources */,
+				1B3AF9E61CC03AA30072D326 /* SumoLogger.swift in Sources */,
 				36DC19AE1A566FBD004CF07D /* Logger.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
