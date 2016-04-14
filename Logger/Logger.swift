@@ -124,7 +124,7 @@ public enum Logger: Int {
             fallthrough
             
         default:
-            
+            SumoLogger.sharedLogger.logMessage(logMessage)
             print(finalMessage)
         }
     }
