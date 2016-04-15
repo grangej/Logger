@@ -32,6 +32,7 @@ class SumoLogger: NSObject {
         self.logRequest.HTTPShouldHandleCookies = true
 
         if !httpBody.isEmpty {
+            print("Logging String for Sumo Logic : %@",httpBody)
             let aBodyData = httpBody.dataUsingEncoding(NSUTF8StringEncoding)
             self.logRequest.HTTPBody = aBodyData
             NSURLConnection.sendAsynchronousRequest(self.logRequest, queue:self.logQueue, completionHandler:{ (response:NSURLResponse?, data: NSData?, error: NSError?) -> Void in
