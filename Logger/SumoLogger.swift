@@ -17,7 +17,7 @@ class SumoLogger: NSObject {
         return Singleton.instance
     }
     
-    private var logRequest: NSMutableURLRequest = NSMutableURLRequest(URL: NSURL.init(string:"https://dev-idp-logging.aws.lifelock.ad:8443/log?category=iOS")!)
+    private var logRequest: NSMutableURLRequest = NSMutableURLRequest(URL: NSURL.init(string:"http://dev-idp-logging.aws.lifelock.ad:8080/log?category=iOS")!)
     private var logQueue : NSOperationQueue = NSOperationQueue()
     
     
