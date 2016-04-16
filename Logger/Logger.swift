@@ -124,7 +124,10 @@ public enum Logger: Int {
             fallthrough
             
         default:
-            SumoLogger.sharedLogger.logMessage(logMessage)
+            SumoLogger.sharedLogger.logMessage(finalMessage)
+            
+            CrashlyticsRecorder.sharedInstance?.log(finalMessage)
+            
             print(finalMessage)
         }
     }
