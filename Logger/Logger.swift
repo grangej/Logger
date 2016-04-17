@@ -128,7 +128,7 @@ public enum Logger: Int {
             let allowedCharacters = NSCharacterSet.URLQueryAllowedCharacterSet().mutableCopy() as! NSMutableCharacterSet
             allowedCharacters.removeCharactersInString("+/=")
             
-            if let encodedString = finalMessage.stringByAddingPercentEncodingWithAllowedCharacters(allowedCharacters) {
+            if let encodedString = finalMessage.stringByRemovingPercentEncoding {
                 
                 CrashlyticsRecorder.sharedInstance?.log(encodedString)
 
