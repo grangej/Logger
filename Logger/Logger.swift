@@ -124,9 +124,19 @@ public enum Logger: Int {
             fallthrough
             
         default:
-            SumoLogger.sharedLogger.logMessage(finalMessage)
             
-            CrashlyticsRecorder.sharedInstance?.log(finalMessage)
+            let allowedCharacters = NSCharacterSet.URLQueryAllowedCharacterSet().mutableCopy() as! NSMutableCharacterSet
+            allowedCharacters.removeCharactersInString("+/=")
+            
+            if let encodedString = finalMessage.stringByAddingPercentEncodingWithAllowedCharacters(allowedCharacters) {
+                
+                CrashlyticsRecorder.sharedInstance?.log(encodedString)
+
+            }
+            
+            
+            SumoLogger.sharedLogger.logMessage(finalMessage)
+
             
             print(finalMessage)
         }
