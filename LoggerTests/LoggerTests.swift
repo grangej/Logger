@@ -95,7 +95,17 @@ class LoggerTests: XCTestCase {
         
         Logger.logLevelInfo.log("https://www.walmart.com/account/login?returnUrl=%2Faccount%2F", logPrefix: "com.lifelock.testapp")
     }
+    
+    func testLogResultError() {
+        
+        Logger.currentLevel = Logger.logLevelVerbose
 
+        TestError.Test.logInfo()
+    }
     
+}
+
+enum TestError: ErrorType {
     
+    case Test
 }

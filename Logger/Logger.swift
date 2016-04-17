@@ -12,18 +12,35 @@ public extension ErrorType {
     
     func logError() {
         
+        self.log(Logger.logLevelError)
+    }
+    
+    func logWarning() {
+        
+        self.log(Logger.logLevelWarn)
+
+    }
+    
+    func logInfo() {
+        
+        self.log(Logger.logLevelInfo)
+        
+    }
+    
+    func log(logLevel: Logger) {
+        
         if let resultError = self as? ErrorProtocal,
             let debugError = self as? CustomDebugStringConvertible
         {
             
-            Logger.logLevelError.log(debugError.debugDescription, logPrefix: resultError.errorDomain)
+            logLevel.log(debugError.debugDescription, logPrefix: resultError.errorDomain)
             
         }
         else {
             
             let error = self as NSError
             
-            Logger.logLevelError.log(error.localizedDescription, logPrefix: error.domain)
+            logLevel.log(error.localizedDescription, logPrefix: error.domain)
         }
     }
 }
