@@ -8,6 +8,7 @@
 
 import UIKit
 import XCTest
+@testable import Logger
 
 
 class LoggerTests: XCTestCase {
@@ -87,6 +88,13 @@ class LoggerTests: XCTestCase {
         
     }
     
+    
+    func testCrashCrashlytics() {
+        
+        Logger.currentLevel = Logger.logLevelVerbose
+        
+        Logger.logLevelInfo.log("https://www.walmart.com/account/login?returnUrl=%2Faccount%2F", logPrefix: "com.lifelock.testapp")
+    }
 
     
     
