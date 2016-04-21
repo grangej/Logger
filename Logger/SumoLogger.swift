@@ -8,16 +8,23 @@
 
 import UIKit
 
-class SumoLogger: NSObject {
+public class SumoLogger: NSObject {
     
-    class var sharedLogger: SumoLogger {
-        struct Singleton {
-            static let instance = SumoLogger()
+    public static let sharedLogger = SumoLogger()
+
+    override init() {
+        
+        super.init()
+        
+        guard let url = NSURL(string:"http://dev-idp-logging.aws.lifelock.ad:8080/log?category=iOS") else {
+            
+            return
         }
-        return Singleton.instance
+        
+        self.logRequest = NSMutableURLRequest(URL: url)
     }
     
-    private var logRequest: NSMutableURLRequest = NSMutableURLRequest(URL: NSURL.init(string:"http://dev-idp-logging.aws.lifelock.ad:8080/log?category=iOS")!)
+    private var logRequest: NSMutableURLRequest?
     private var logQueue : NSOperationQueue = NSOperationQueue()
     
     
@@ -27,14 +34,19 @@ class SumoLogger: NSObject {
     
     
     func logMessage(httpBody:String) {
-        self.logRequest.HTTPMethod = "POST"
-        self.logRequest.timeoutInterval = 60
-        self.logRequest.HTTPShouldHandleCookies = true
+        
+        guard let logRequest = self.logRequest else {
+            
+            return
+        }
+        logRequest.HTTPMethod = "POST"
+        logRequest.timeoutInterval = 60
+        logRequest.HTTPShouldHandleCookies = true
 
         if !httpBody.isEmpty {
             let aBodyData = httpBody.dataUsingEncoding(NSUTF8StringEncoding)
-            self.logRequest.HTTPBody = aBodyData
-            NSURLConnection.sendAsynchronousRequest(self.logRequest, queue:self.logQueue, completionHandler:{ (response:NSURLResponse?, data: NSData?, error: NSError?) -> Void in
+            logRequest.HTTPBody = aBodyData
+            NSURLConnection.sendAsynchronousRequest(logRequest, queue:self.logQueue, completionHandler:{ (response:NSURLResponse?, data: NSData?, error: NSError?) -> Void in
                 
             })
         }
