@@ -22,6 +22,10 @@ public class SumoLogger: NSObject {
         }
         
         self.logRequest = NSMutableURLRequest(URL: url)
+        
+        self.logRequest?.HTTPMethod = "POST"
+        self.logRequest?.timeoutInterval = 60
+        self.logRequest?.HTTPShouldHandleCookies = true
     }
     
     private var logRequest: NSMutableURLRequest?
@@ -39,9 +43,7 @@ public class SumoLogger: NSObject {
             
             return
         }
-        logRequest.HTTPMethod = "POST"
-        logRequest.timeoutInterval = 60
-        logRequest.HTTPShouldHandleCookies = true
+
 
         if !httpBody.isEmpty {
             let aBodyData = httpBody.dataUsingEncoding(NSUTF8StringEncoding)
