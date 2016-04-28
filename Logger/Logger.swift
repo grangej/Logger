@@ -123,20 +123,23 @@ public enum Logger: Int {
         
         let finalMessage: String
         
+        let truncatedMessage = logMessage.trunc(200, trailing: "...")
+
+        
         if let prefixMsg = logPrefix {
             
-            finalMessage = "\(prefixMsg)-\(logMessage)"
+            finalMessage = "\(prefixMsg)-\(truncatedMessage)"
         }
         else {
             
-            finalMessage = "\(logMessage)"
+            finalMessage = "\(truncatedMessage)"
         }
         
         switch self {
             
         case .logLevelError, .logLevelCritical:
             
-            CrashlyticsRecorder.sharedInstance?.recordError(logMessage, domain: logPrefix ?? "com.lifelock.Logger")
+            CrashlyticsRecorder.sharedInstance?.recordError(truncatedMessage, domain: logPrefix ?? "com.lifelock.Logger")
             
             fallthrough
             
@@ -153,9 +156,21 @@ public enum Logger: Int {
 
             
             print(finalMessage)
+            
+            
         }
     }
     
     
 
+}
+
+extension String {
+    func trunc(length: Int, trailing: String? = "...") -> String {
+        if self.characters.count > length {
+            return self.substringToIndex(self.startIndex.advancedBy(length)) + (trailing ?? "")
+        } else {
+            return self
+        }
+    }
 }
