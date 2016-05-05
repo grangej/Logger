@@ -8,6 +8,9 @@
 
 import Foundation
 
+public typealias ResultError = protocol<ErrorType, CustomDebugStringConvertible, CustomStringConvertible, ErrorProtocal>
+
+
 public extension ErrorType {
     
     func logError() {
