@@ -43,14 +43,17 @@ public class SumoLogger: NSObject {
             
             return
         }
-
-
-        if !httpBody.isEmpty {
-            let aBodyData = httpBody.dataUsingEncoding(NSUTF8StringEncoding)
-            logRequest.HTTPBody = aBodyData
-            NSURLConnection.sendAsynchronousRequest(logRequest, queue:self.logQueue, completionHandler:{ (response:NSURLResponse?, data: NSData?, error: NSError?) -> Void in
+        
+        let logTask = NSURLSession.sharedSession().dataTaskWithRequest(logRequest) { (data, response, error) in
+            
+            if let error = error {
                 
-            })
+                print("Error loging to sumlogic: \(error.localizedDescription)")
+            }
+
         }
+        
+        logTask.resume()
+
     }
 }
