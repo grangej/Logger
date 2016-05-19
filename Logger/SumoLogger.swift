@@ -16,13 +16,12 @@ public class SumoLogger: NSObject {
         
         super.init()
         
-        guard let url = NSURL(string:"http://dev-idp-logging.aws.lifelock.ad:8080/log?category=iOS") else {
+        guard let url = NSURL(string:"https://prod-idp-logging.lifelock.com/log?category=iOS") else {
             
             return
         }
         
         self.logRequest = NSMutableURLRequest(URL: url)
-        
         self.logRequest?.HTTPMethod = "POST"
         self.logRequest?.timeoutInterval = 60
         self.logRequest?.HTTPShouldHandleCookies = true
@@ -30,7 +29,6 @@ public class SumoLogger: NSObject {
     
     private var logRequest: NSMutableURLRequest?
     private var logQueue : NSOperationQueue = NSOperationQueue()
-    
     
     func stopLogging() {
         self.logQueue.cancelAllOperations()
@@ -40,13 +38,16 @@ public class SumoLogger: NSObject {
     func logMessage(httpBody:String) {
         
         guard let logRequest = self.logRequest else {
-            
             return
         }
-
-
+        
+        let aLogString : String = String.localizedStringWithFormat("data=%@", httpBody)
+        guard let anEncodedLogString = aLogString.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet()) else {
+            return
+        }
+        
         if !httpBody.isEmpty {
-            let aBodyData = httpBody.dataUsingEncoding(NSUTF8StringEncoding)
+            let aBodyData = anEncodedLogString.dataUsingEncoding(NSUTF8StringEncoding)
             logRequest.HTTPBody = aBodyData
             NSURLConnection.sendAsynchronousRequest(logRequest, queue:self.logQueue, completionHandler:{ (response:NSURLResponse?, data: NSData?, error: NSError?) -> Void in
                 
