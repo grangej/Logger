@@ -155,7 +155,7 @@ public enum Logger: Int {
             }
             
             
-            SumoLogger.sharedLogger.logMessage(finalMessage)
+           // SumoLogger.sharedLogger.logMessage(finalMessage)
 
             
             print(finalMessage)

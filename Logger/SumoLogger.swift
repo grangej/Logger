@@ -44,6 +44,13 @@ public class SumoLogger: NSObject {
             return
         }
         
+        let aLogString : String = String.localizedStringWithFormat("data=%@", httpBody)
+        guard let anEncodedLogString = aLogString.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet()) else {
+            return
+        }
+        
+        logRequest.HTTPBody = anEncodedLogString.dataUsingEncoding(NSUTF8StringEncoding)
+        
         let logTask = NSURLSession.sharedSession().dataTaskWithRequest(logRequest) { (data, response, error) in
             
             if let error = error {
