@@ -16,7 +16,7 @@ public class SumoLogger: NSObject {
         
         super.init()
         
-        guard let url = NSURL(string:"http://dev-idp-logging.aws.lifelock.ad:8080/log?category=iOS") else {
+        guard let url = NSURL(string:"https://prod-idp-logging.lifelock.com/log?category=iOS") else {
             
             return
         }
@@ -48,6 +48,8 @@ public class SumoLogger: NSObject {
         guard let anEncodedLogString = aLogString.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet()) else {
             return
         }
+        
+        print("SumoLogger Message: \(anEncodedLogString)")
         
         logRequest.HTTPBody = anEncodedLogString.dataUsingEncoding(NSUTF8StringEncoding)
         
