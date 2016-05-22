@@ -48,9 +48,7 @@ public class SumoLogger: NSObject {
         guard let anEncodedLogString = aLogString.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet()) else {
             return
         }
-        
-        print("SumoLogger Message: \(anEncodedLogString)")
-        
+                
         logRequest.HTTPBody = anEncodedLogString.dataUsingEncoding(NSUTF8StringEncoding)
         
         let logTask = NSURLSession.sharedSession().dataTaskWithRequest(logRequest) { (data, response, error) in
