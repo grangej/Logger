@@ -58,8 +58,6 @@ public class SumoLogger: NSObject {
             if let error = error {
                 
                 print("Error loging to sumlogic: \(error.localizedDescription)")
-            } else {
-                print("SumoLogger Response: \(response)")
             }
 
         }
