@@ -50,6 +50,7 @@ public extension ErrorType {
 
 public enum Logger: Int {
 
+    public static var sumoLogicEnabled: Bool = true
 
     public static var currentLevel: Logger = .logLevelWarn {
         
@@ -154,9 +155,11 @@ public enum Logger: Int {
 
             }
             
-            
-           SumoLogger.sharedLogger.logMessage(finalMessage)
+            if Logger.sumoLogicEnabled {
+                
+                SumoLogger.sharedLogger.logMessage(finalMessage)
 
+            }
             
             print(finalMessage)
             
