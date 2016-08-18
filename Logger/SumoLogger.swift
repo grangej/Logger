@@ -12,6 +12,8 @@ public class SumoLogger: NSObject {
     
     public static let sharedLogger = SumoLogger()
 
+    private var logTasks: [NSURLSessionDataTask] = [NSURLSessionDataTask]()
+    
     override init() {
         
         super.init()
@@ -59,6 +61,8 @@ public class SumoLogger: NSObject {
             }
 
         }
+        
+        self.logTasks.append(logTask)
         
         logTask.resume()
 
