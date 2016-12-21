@@ -81,7 +81,7 @@ public enum Logger: Int {
         }
     }
 
-    case logLevelCritical, logLevelError, logLevelWarn, logLevelInfo, logLevelVerbose
+    case logLevelCritical, logLevelError, logLevelWarn, logLevelInfo, logLevelVerbose, logLevelSuplex
     
     
     /// Log the given message depending on the curret log level
@@ -111,6 +111,15 @@ public enum Logger: Int {
             }
             logWithMessage("Info: \(logMessage)", logPrefix: logPrefix)
             return true
+        case .logLevelSuplex:
+            if Logger.currentLevel == .logLevelCritical ||
+                Logger.currentLevel == .logLevelError ||
+                Logger.currentLevel == .logLevelWarn || Logger.currentLevel == .logLevelInfo {
+                return false
+            }
+            logWithMessage("Verbose: \(logMessage)", logPrefix: logPrefix)
+            return true
+            
         default:
             if Logger.currentLevel == .logLevelCritical ||
                 Logger.currentLevel == .logLevelError ||
@@ -122,6 +131,7 @@ public enum Logger: Int {
             return true
         }
     }
+    
     
     internal func logWithMessage(logMessage : String, logPrefix: String?, errorCode: Int? = 0) {
         
@@ -161,7 +171,9 @@ public enum Logger: Int {
 
             }
             
-            print(finalMessage)
+            //print(finalMessage)
+            
+            SuplexLogger.sharedLogger.logMessage(finalMessage)
             
             
         }
