@@ -119,7 +119,7 @@ public enum Logger: Int {
                 Logger.currentLevel == .logLevelWarn || Logger.currentLevel == .logLevelInfo {
                 return false
             }
-            logWithMessage("Suplex: \(logMessage)", logPrefix: logPrefix)
+            logWithMessage("Suplex: \(logMessage)", logPrefix: nil)
             return true
             
         default:
