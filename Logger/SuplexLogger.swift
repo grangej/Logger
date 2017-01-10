@@ -18,7 +18,7 @@ public class SuplexLogger: NSObject {
         
         super.init()
         
-        guard let url = NSURL(string:"http://sample-env.kbpvdkezpy.us-west-2.elasticbeanstalk.com") else {
+        guard let url = NSURL(string:"http://sample-env.kbpvdkezpy.us-west-2.elasticbeanstalk.com/log") else {
             
             return
         }
