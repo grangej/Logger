@@ -46,9 +46,7 @@ public class SuplexLogger: NSObject {
             return
         }
         
-        let aLogString : String = String.localizedStringWithFormat("data=%@", httpBody)
-        
-        guard let anEncodedLogString = aLogString.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet()) else {
+        guard let anEncodedLogString = httpBody.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet()) else {
             return
         }
         
