@@ -56,6 +56,11 @@ public class SuplexLogger: NSObject {
         
         let logTask = NSURLSession.sharedSession().dataTaskWithRequest(logRequest) { (data, response, error) in
             
+            if let response = response {
+                
+                print("Response loging To Suplex: \(response)")
+            }
+            
             if let error = error {
                 
                 print("Error loging To Suplex: \(error.localizedDescription)")
