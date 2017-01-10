@@ -18,7 +18,7 @@ public class SuplexLogger: NSObject {
         
         super.init()
         
-        guard let url = NSURL(string:"http://ec2-54-202-253-78.us-west-2.compute.amazonaws.com/log") else {
+        guard let url = NSURL(string:"http://sample-env.kbpvdkezpy.us-west-2.elasticbeanstalk.com") else {
             
             return
         }
@@ -58,7 +58,7 @@ public class SuplexLogger: NSObject {
             
             if let error = error {
                 
-                print("Error loging : \(error.localizedDescription)")
+                print("Error loging To Suplex: \(error.localizedDescription)")
             }
             
         }

@@ -51,6 +51,8 @@ public extension ErrorType {
 public enum Logger: Int {
 
     public static var sumoLogicEnabled: Bool = true
+    
+    public static var suplexLoggingEnabled: Bool = true
 
     public static var currentLevel: Logger = .logLevelWarn {
         
@@ -173,8 +175,10 @@ public enum Logger: Int {
             
             //print(finalMessage)
             
-            SuplexLogger.sharedLogger.logMessage(finalMessage)
-            
+            if Logger.suplexLoggingEnabled {
+
+                SuplexLogger.sharedLogger.logMessage(finalMessage)
+            }
             
         }
     }
