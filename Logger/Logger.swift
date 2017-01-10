@@ -158,6 +158,14 @@ public enum Logger: Int {
             CrashlyticsRecorder.sharedInstance?.recordError(truncatedMessage, domain: logPrefix ?? "com.lifelock.Logger")
             
             fallthrough
+        
+        case .logLevelSuplex:
+            
+            if Logger.suplexLoggingEnabled {
+                
+                SuplexLogger.sharedLogger.logMessage(finalMessage)
+            }
+
             
         default:
             
@@ -174,11 +182,6 @@ public enum Logger: Int {
             }
             
             //print(finalMessage)
-            
-            if Logger.suplexLoggingEnabled {
-
-                SuplexLogger.sharedLogger.logMessage(finalMessage)
-            }
             
         }
     }
