@@ -181,7 +181,7 @@ public enum Logger: Int {
 
             }
             
-            //print(finalMessage)
+            print(finalMessage)
             
         }
     }
