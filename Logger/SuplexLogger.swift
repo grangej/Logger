@@ -18,7 +18,7 @@ public class SuplexLogger: NSObject {
         
         super.init()
         
-        guard let url = NSURL(string:"http://sample-env.kbpvdkezpy.us-west-2.elasticbeanstalk.com") else {
+        guard let url = NSURL(string:"http://sample-env.kbpvdkezpy.us-west-2.elasticbeanstalk.com/log") else {
             
             return
         }
@@ -46,9 +46,7 @@ public class SuplexLogger: NSObject {
             return
         }
         
-        let aLogString : String = String.localizedStringWithFormat("data=%@", httpBody)
-        
-        guard let anEncodedLogString = aLogString.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet()) else {
+        guard let anEncodedLogString = httpBody.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet()) else {
             return
         }
         

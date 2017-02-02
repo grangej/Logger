@@ -119,7 +119,7 @@ public enum Logger: Int {
                 Logger.currentLevel == .logLevelWarn || Logger.currentLevel == .logLevelInfo {
                 return false
             }
-            logWithMessage("Verbose: \(logMessage)", logPrefix: logPrefix)
+            logWithMessage(logMessage, logPrefix: nil)
             return true
             
         default:
@@ -158,6 +158,14 @@ public enum Logger: Int {
             CrashlyticsRecorder.sharedInstance?.recordError(truncatedMessage, domain: logPrefix ?? "com.lifelock.Logger")
             
             fallthrough
+        
+        case .logLevelSuplex:
+            
+            if Logger.suplexLoggingEnabled {
+                
+                SuplexLogger.sharedLogger.logMessage(finalMessage)
+            }
+
             
         default:
             
@@ -173,12 +181,7 @@ public enum Logger: Int {
 
             }
             
-            //print(finalMessage)
-            
-            if Logger.suplexLoggingEnabled {
-
-                SuplexLogger.sharedLogger.logMessage(finalMessage)
-            }
+            print(finalMessage)
             
         }
     }
