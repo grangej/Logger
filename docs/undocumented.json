@@ -1,0 +1,278 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/john.grange/Projects/Lifelock/logger/Logger/CrashlyticsRecorder.swift",
+      "line": 8,
+      "symbol": "CrashlyticsProtocol",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/john.grange/Projects/Lifelock/logger/Logger/CrashlyticsRecorder.swift",
+      "line": 10,
+      "symbol": "CrashlyticsProtocol.log(_:args:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/john.grange/Projects/Lifelock/logger/Logger/CrashlyticsRecorder.swift",
+      "line": 12,
+      "symbol": "CrashlyticsProtocol.setUserIdentifier(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/john.grange/Projects/Lifelock/logger/Logger/CrashlyticsRecorder.swift",
+      "line": 13,
+      "symbol": "CrashlyticsProtocol.setUserName(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/john.grange/Projects/Lifelock/logger/Logger/CrashlyticsRecorder.swift",
+      "line": 14,
+      "symbol": "CrashlyticsProtocol.setUserEmail(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/john.grange/Projects/Lifelock/logger/Logger/CrashlyticsRecorder.swift",
+      "line": 15,
+      "symbol": "CrashlyticsProtocol.setObjectValue(_:forKey:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/john.grange/Projects/Lifelock/logger/Logger/CrashlyticsRecorder.swift",
+      "line": 16,
+      "symbol": "CrashlyticsProtocol.setIntValue(_:forKey:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/john.grange/Projects/Lifelock/logger/Logger/CrashlyticsRecorder.swift",
+      "line": 17,
+      "symbol": "CrashlyticsProtocol.setBoolValue(_:forKey:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/john.grange/Projects/Lifelock/logger/Logger/CrashlyticsRecorder.swift",
+      "line": 18,
+      "symbol": "CrashlyticsProtocol.setFloatValue(_:forKey:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/john.grange/Projects/Lifelock/logger/Logger/CrashlyticsRecorder.swift",
+      "line": 20,
+      "symbol": "CrashlyticsProtocol.recordError(_:withAdditionalUserInfo:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/john.grange/Projects/Lifelock/logger/Logger/CrashlyticsRecorder.swift",
+      "line": 56,
+      "symbol": "CrashlyticsRecorder",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/john.grange/Projects/Lifelock/logger/Logger/CrashlyticsRecorder.swift",
+      "line": 216,
+      "symbol": "CrashlyticsRecorder.recordError(_:domain:code:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/john.grange/Projects/Lifelock/logger/Logger/ErrorProtocal.swift",
+      "line": null,
+      "symbol": "ErrorProtocal",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/john.grange/Projects/Lifelock/logger/Logger/ErrorProtocal.swift",
+      "line": 13,
+      "symbol": "ErrorProtocal",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/john.grange/Projects/Lifelock/logger/Logger/ErrorProtocal.swift",
+      "line": 15,
+      "symbol": "ErrorProtocal.errorDomain",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/john.grange/Projects/Lifelock/logger/Logger/ErrorProtocal.swift",
+      "line": 17,
+      "symbol": "ErrorProtocal.errorCode",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/john.grange/Projects/Lifelock/logger/Logger/ErrorProtocal.swift",
+      "line": 19,
+      "symbol": "ErrorProtocal.errorForCode()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/john.grange/Projects/Lifelock/logger/Logger/ErrorProtocal.swift",
+      "line": 25,
+      "symbol": "ErrorProtocal.errorForCode()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/john.grange/Projects/Lifelock/logger/Logger/Logger.swift",
+      "line": 16,
+      "symbol": "ErrorType.logError()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/john.grange/Projects/Lifelock/logger/Logger/Logger.swift",
+      "line": 21,
+      "symbol": "ErrorType.logWarning()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/john.grange/Projects/Lifelock/logger/Logger/Logger.swift",
+      "line": 27,
+      "symbol": "ErrorType.logInfo()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/john.grange/Projects/Lifelock/logger/Logger/Logger.swift",
+      "line": 33,
+      "symbol": "ErrorType.log(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/john.grange/Projects/Lifelock/logger/Logger/Logger.swift",
+      "line": 51,
+      "symbol": "Logger",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/john.grange/Projects/Lifelock/logger/Logger/Logger.swift",
+      "line": 53,
+      "symbol": "Logger.sumoLogicEnabled",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/john.grange/Projects/Lifelock/logger/Logger/Logger.swift",
+      "line": 55,
+      "symbol": "Logger.suplexLoggingEnabled",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/john.grange/Projects/Lifelock/logger/Logger/Logger.swift",
+      "line": 57,
+      "symbol": "Logger.currentLevel",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/john.grange/Projects/Lifelock/logger/Logger/Logger.swift",
+      "line": 64,
+      "symbol": "Logger.userIdentifier",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/john.grange/Projects/Lifelock/logger/Logger/Logger.swift",
+      "line": 71,
+      "symbol": "Logger.userEmail",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/john.grange/Projects/Lifelock/logger/Logger/Logger.swift",
+      "line": 78,
+      "symbol": "Logger.userName",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/john.grange/Projects/Lifelock/logger/Logger/Logger.swift",
+      "line": 86,
+      "symbol": "Logger.logLevelCritical",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/john.grange/Projects/Lifelock/logger/Logger/Logger.swift",
+      "line": 86,
+      "symbol": "Logger.logLevelError",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/john.grange/Projects/Lifelock/logger/Logger/Logger.swift",
+      "line": 86,
+      "symbol": "Logger.logLevelInfo",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/john.grange/Projects/Lifelock/logger/Logger/Logger.swift",
+      "line": 86,
+      "symbol": "Logger.logLevelSuplex",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/john.grange/Projects/Lifelock/logger/Logger/Logger.swift",
+      "line": 86,
+      "symbol": "Logger.logLevelVerbose",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/john.grange/Projects/Lifelock/logger/Logger/Logger.swift",
+      "line": 86,
+      "symbol": "Logger.logLevelWarn",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/john.grange/Projects/Lifelock/logger/Logger/SumoLogger.swift",
+      "line": 11,
+      "symbol": "SumoLogger",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/john.grange/Projects/Lifelock/logger/Logger/SumoLogger.swift",
+      "line": 13,
+      "symbol": "SumoLogger.sharedLogger",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/john.grange/Projects/Lifelock/logger/Logger/SuplexLogger.swift",
+      "line": 11,
+      "symbol": "SuplexLogger",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/john.grange/Projects/Lifelock/logger/Logger/SuplexLogger.swift",
+      "line": 13,
+      "symbol": "SuplexLogger.sharedLogger",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/john.grange/Projects/Lifelock/logger"
+}

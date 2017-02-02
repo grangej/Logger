@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>CrashlyticsRecorder Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/CrashlyticsRecorder" class="dashAnchor"></a>
+    <a title="CrashlyticsRecorder Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html"> Docs</a> (30% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html"> Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        CrashlyticsRecorder Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/CrashlyticsRecorder.html">CrashlyticsRecorder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SumoLogger.html">SumoLogger</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SuplexLogger.html">SuplexLogger</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enums</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/Logger.html">Logger</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/ErrorType.html">ErrorType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/CrashlyticsProtocol.html">CrashlyticsProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ErrorProtocal.html">ErrorProtocal</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ErrorReportable.html">ErrorReportable</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>CrashlyticsRecorder</h1>
+            <p>Undocumented</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvC6Logger19CrashlyticsRecorder14sharedInstanceGSqS0__"></a>
+                    <a name="//apple_ref/swift/Variable/sharedInstance" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvC6Logger19CrashlyticsRecorder14sharedInstanceGSqS0__">sharedInstance</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The <code>CrashlyticsRecorder</code> shared instance to be used for recording crashes and errors.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">private(set)</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">sharedInstance</span><span class="p">:</span> <span class="kt">CrashlyticsRecorder</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC6Logger19CrashlyticsRecorder20createSharedInstanceFT11crashlyticsPS_19CrashlyticsProtocol__S0_"></a>
+                    <a name="//apple_ref/swift/Method/createSharedInstance(crashlytics:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC6Logger19CrashlyticsRecorder20createSharedInstanceFT11crashlyticsPS_19CrashlyticsProtocol__S0_">createSharedInstance(crashlytics:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates the <code><a href="../Classes/CrashlyticsRecorder.html#/s:ZvC6Logger19CrashlyticsRecorder14sharedInstanceGSqS0__">sharedInstance</a></code> with the <code>Crashlytics</code> shared instance for the application. This method should be called in <code>application:didFinishLaunchingWithOptions:</code> after initializing <code>Crashlytics</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">createSharedInstance</span><span class="p">(</span><span class="n">crashlytics</span> <span class="nv">crashlyticsInstance</span><span class="p">:</span> <span class="kt"><a href="../Protocols/CrashlyticsProtocol.html">CrashlyticsProtocol</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">CrashlyticsRecorder</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>crashlytics</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The <code>sharedInstance</code> of <code>Crashlytics</code> for the application.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The created <code>CrashlyticsRecorder</code> shared instance</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC6Logger19CrashlyticsRecorder17setUserIdentifierFGSqSS_T_"></a>
+                    <a name="//apple_ref/swift/Method/setUserIdentifier(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC6Logger19CrashlyticsRecorder17setUserIdentifierFGSqSS_T_">setUserIdentifier(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Specify a user identifier which will be visible in the Crashlytics UI.</p>
+
+<p>Many of our customers have requested the ability to tie crashes to specific end-users of their
+  application in order to facilitate responses to support requests or permit the ability to reach
+  out for more information. We allow you to specify up to three separate values for display within
+  the Crashlytics UI - but please be mindful of your end-user&rsquo;s privacy.</p>
+
+<p>We recommend specifying a user identifier - an arbitrary string that ties an end-user to a record
+  in your system. This could be a database id, hash, or other value that is meaningless to a
+  third-party observer but can be indexed and queried by you.</p>
+
+<p>Optionally, you may also specify the end-user&rsquo;s name or username, as well as email address if you
+  do not have a system that works well with obscured identifiers.</p>
+
+<p>Pursuant to our EULA, this data is transferred securely throughout our system and we will not
+  disseminate end-user data unless required to by law. That said, if you choose to provide end-user
+  contact information, we strongly recommend that you disclose this in your application&rsquo;s privacy
+  policy. Data privacy is of our utmost concern.</p>
+
+<p>@param identifier An arbitrary user identifier string which ties an end-user to a record in your system.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">setUserIdentifier</span><span class="p">(</span><span class="nv">identifier</span><span class="p">:</span> <span class="kt">String</span><span class="p">?)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC6Logger19CrashlyticsRecorder11setUserNameFGSqSS_T_"></a>
+                    <a name="//apple_ref/swift/Method/setUserName(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC6Logger19CrashlyticsRecorder11setUserNameFGSqSS_T_">setUserName(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Specify a user name which will be visible in the Crashlytics UI.
+  Please be mindful of your end-user&rsquo;s privacy and see if setUserIdentifier: can fulfil your needs.
+  @see setUserIdentifier:</p>
+
+<p>@param name An end user&rsquo;s name.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">setUserName</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">?)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC6Logger19CrashlyticsRecorder12setUserEmailFGSqSS_T_"></a>
+                    <a name="//apple_ref/swift/Method/setUserEmail(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC6Logger19CrashlyticsRecorder12setUserEmailFGSqSS_T_">setUserEmail(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Specify a user email which will be visible in the Crashlytics UI.
+  Please be mindful of your end-user&rsquo;s privacy and see if setUserIdentifier: can fulfil your needs.</p>
+
+<p>@see setUserIdentifier:</p>
+
+<p>@param email An end user&rsquo;s email address.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">setUserEmail</span><span class="p">(</span><span class="nv">email</span><span class="p">:</span> <span class="kt">String</span><span class="p">?)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC6Logger19CrashlyticsRecorder14setObjectValueFTGSqPs9AnyObject__6forKeySS_T_"></a>
+                    <a name="//apple_ref/swift/Method/setObjectValue(_:forKey:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC6Logger19CrashlyticsRecorder14setObjectValueFTGSqPs9AnyObject__6forKeySS_T_">setObjectValue(_:forKey:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Set a value for a for a key to be associated with your crash data which will be visible in the Crashlytics UI.
+  When setting an object value, the object is converted to a string. This is typically done by calling
+  -[NSObject description].</p>
+
+<p>@param value The object to be associated with the key
+  @param key   The key with which to associate the value</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">setObjectValue</span><span class="p">(</span><span class="nv">value</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">?,</span> <span class="n">forKey</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC6Logger19CrashlyticsRecorder11setIntValueFTVs5Int326forKeySS_T_"></a>
+                    <a name="//apple_ref/swift/Method/setIntValue(_:forKey:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC6Logger19CrashlyticsRecorder11setIntValueFTVs5Int326forKeySS_T_">setIntValue(_:forKey:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Set an int value for a key to be associated with your crash data which will be visible in the Crashlytics UI.</p>
+
+<p>@param value The integer value to be set
+  @param key   The key with which to associate the value</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">setIntValue</span><span class="p">(</span><span class="nv">value</span><span class="p">:</span> <span class="kt">Int32</span><span class="p">,</span> <span class="n">forKey</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC6Logger19CrashlyticsRecorder12setBoolValueFTSb6forKeySS_T_"></a>
+                    <a name="//apple_ref/swift/Method/setBoolValue(_:forKey:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC6Logger19CrashlyticsRecorder12setBoolValueFTSb6forKeySS_T_">setBoolValue(_:forKey:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Set a BOOL value for a key to be associated with your crash data which will be visible in the Crashlytics UI.</p>
+
+<p>@param value The BOOL value to be set
+  @param key   The key with which to associate the value</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">setBoolValue</span><span class="p">(</span><span class="nv">value</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="n">forKey</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC6Logger19CrashlyticsRecorder13setFloatValueFTSf6forKeySS_T_"></a>
+                    <a name="//apple_ref/swift/Method/setFloatValue(_:forKey:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC6Logger19CrashlyticsRecorder13setFloatValueFTSf6forKeySS_T_">setFloatValue(_:forKey:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Set a float value for a key to be associated with your crash data which will be visible in the Crashlytics UI.</p>
+
+<p>@param value The float value to be set
+  @param key   The key with which to associate the value</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">setFloatValue</span><span class="p">(</span><span class="nv">value</span><span class="p">:</span> <span class="kt">Float</span><span class="p">,</span> <span class="n">forKey</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC6Logger19CrashlyticsRecorder11recordErrorFTCSo7NSError22withAdditionalUserInfoGSqGVs10DictionarySSPs9AnyObject____T_"></a>
+                    <a name="//apple_ref/swift/Method/recordError(_:withAdditionalUserInfo:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC6Logger19CrashlyticsRecorder11recordErrorFTCSo7NSError22withAdditionalUserInfoGSqGVs10DictionarySSPs9AnyObject____T_">recordError(_:withAdditionalUserInfo:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This allows you to record a non-fatal event, described by an NSError object. These events will be grouped and
+ displayed similarly to crashes. Keep in mind that this method can be expensive. Also, the total number of
+ NSErrors that can be recorded during your app&rsquo;s life-cycle is limited by a fixed-size circular buffer. If the
+ buffer is overrun, the oldest data is dropped. Errors are relayed to Crashlytics on a subsequent launch
+ of your application.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">recordError</span><span class="p">(</span><span class="nv">error</span><span class="p">:</span> <span class="kt">NSError</span><span class="p">,</span> <span class="n">withAdditionalUserInfo</span> <span class="nv">userInfo</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC6Logger19CrashlyticsRecorder11recordErrorFPS_15ErrorReportable_T_"></a>
+                    <a name="//apple_ref/swift/Method/recordError(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC6Logger19CrashlyticsRecorder11recordErrorFPS_15ErrorReportable_T_">recordError(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This allows you to record a non-fatal event, described by a Swift <code>ErrorType</code> object that conforms to the
+ <code><a href="../Protocols/ErrorReportable.html">ErrorReportable</a></code> protocol. These events will be grouped and displayed similarly to crashes. Keep in mind
+ that this method can be expensive. Also, the total number of NSErrors that can be recorded during your 
+ app&rsquo;s life-cycle is limited by a fixed-size circular buffer. If the buffer is overrun, the oldest data is
+ dropped. Errors are relayed to Crashlytics on a subsequent launch of your application.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">recordError</span><span class="p">(</span><span class="nv">error</span><span class="p">:</span> <span class="kt"><a href="../Protocols/ErrorReportable.html">ErrorReportable</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC6Logger19CrashlyticsRecorder11recordErrorFPS_13ErrorProtocal_T_"></a>
+                    <a name="//apple_ref/swift/Method/recordError(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC6Logger19CrashlyticsRecorder11recordErrorFPS_13ErrorProtocal_T_">recordError(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Records an error to Craslhytics using our own ErrorProtocal</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">recordError</span><span class="p">(</span><span class="nv">error</span><span class="p">:</span> <span class="kt"><a href="../Protocols/ErrorProtocal.html">ErrorProtocal</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>error</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>ErrorType that conforms to the ErrorProtocal</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC6Logger19CrashlyticsRecorder11recordErrorFTSS6domainSS4codeSi_T_"></a>
+                    <a name="//apple_ref/swift/Method/recordError(_:domain:code:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC6Logger19CrashlyticsRecorder11recordErrorFTSS6domainSS4codeSi_T_">recordError(_:domain:code:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-02-02)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

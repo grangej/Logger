@@ -1,0 +1,5 @@
+module: Logger
+author: Lifelock Inc. / John Grange
+author_url: http://www.lifelock.com
+copyright: '© 2017 [Lifelock Inc.](http://www.lifelock.com)'
+github_url: https://github.com/grangej/Logger
