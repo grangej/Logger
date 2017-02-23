@@ -8,30 +8,30 @@
 
 import UIKit
 
-public class SuplexLogger: NSObject {
+open class SuplexLogger: NSObject {
     
-    public static let sharedLogger = SuplexLogger()
+    open static let sharedLogger = SuplexLogger()
     
-    private var logTasks: [NSURLSessionDataTask] = [NSURLSessionDataTask]()
+    fileprivate var logTasks: [URLSessionDataTask] = [URLSessionDataTask]()
     
     override init() {
         
         super.init()
         
-        guard let url = NSURL(string:"http://sample-env.kbpvdkezpy.us-west-2.elasticbeanstalk.com/log") else {
+        guard let url = URL(string:"http://sample-env.kbpvdkezpy.us-west-2.elasticbeanstalk.com/log") else {
             
             return
         }
         
-        self.logRequest = NSMutableURLRequest(URL: url)
+        self.logRequest = URLRequest(url: url)
         
-        self.logRequest?.HTTPMethod = "POST"
+        self.logRequest?.httpMethod = "POST"
         self.logRequest?.timeoutInterval = 60
-        self.logRequest?.HTTPShouldHandleCookies = true
+        self.logRequest?.httpShouldHandleCookies = true
     }
     
-    private var logRequest: NSMutableURLRequest?
-    private var logQueue : NSOperationQueue = NSOperationQueue()
+    fileprivate var logRequest: URLRequest?
+    fileprivate var logQueue : OperationQueue = OperationQueue()
     
     
     func stopLogging() {
@@ -39,26 +39,25 @@ public class SuplexLogger: NSObject {
     }
     
     
-    func logMessage(httpBody:String) {
+    func logMessage(_ httpBody:String) {
         
-        guard let logRequest = self.logRequest else {
+        guard var logRequest = self.logRequest else {
             
             return
         }
         
-        guard let anEncodedLogString = httpBody.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet()) else {
+        guard let anEncodedLogString = httpBody.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) else {
             return
         }
         
-        logRequest.HTTPBody = anEncodedLogString.dataUsingEncoding(NSUTF8StringEncoding)
+        logRequest.httpBody = anEncodedLogString.data(using: String.Encoding.utf8)
         
-        let logTask = NSURLSession.sharedSession().dataTaskWithRequest(logRequest) { (data, response, error) in
+        let logTask = URLSession.shared.dataTask(with: logRequest) { (data, response, error) in
             
             if let error = error {
                 
                 print("Error loging To Suplex: \(error.localizedDescription)")
             }
-            
         }
         
         self.logTasks.append(logTask)

@@ -24,13 +24,13 @@ extension ErrorProtocal {
     
     public func errorForCode() -> NSError {
         
-        let userInfo: [NSObject : AnyObject]
+        let userInfo: [AnyHashable: Any]
         
         switch self {
             
         default:
             
-            if let error = self as? protocol<CustomDebugStringConvertible> {
+            if let error = self as? CustomDebugStringConvertible {
                 
                 userInfo = [NSLocalizedDescriptionKey: error.debugDescription]
 
