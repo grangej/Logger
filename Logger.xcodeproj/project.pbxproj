@@ -15,6 +15,8 @@
 		364F95B01A56580C007C93B6 /* Logger.h in Headers */ = {isa = PBXBuildFile; fileRef = 364F95AF1A56580C007C93B6 /* Logger.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		364F95BD1A56580C007C93B6 /* LoggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364F95BC1A56580C007C93B6 /* LoggerTests.swift */; };
 		364F95D01A565840007C93B6 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364F95CF1A565840007C93B6 /* Logger.swift */; };
+		EA2A6E4C6A0E2EBFB3610320 /* Pods_Logger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB76707FE3519D5A5A9003E3 /* Pods_Logger.framework */; };
+		F6ADF9BCEDABA72DB046C0F0 /* Pods_LoggerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0CAC6352913DA70EFA72EB5 /* Pods_LoggerTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,6 +32,9 @@
 /* Begin PBXFileReference section */
 		1B3AF9E41CC03AA30072D326 /* SumoLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SumoLogger.swift; sourceTree = "<group>"; };
 		1BFA1F441E0B1CAA0093F9AB /* SuplexLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuplexLogger.swift; sourceTree = "<group>"; };
+		230F67BE0D55C84158CA8CBE /* Pods-LoggerTests.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoggerTests.adhoc.xcconfig"; path = "Pods/Target Support Files/Pods-LoggerTests/Pods-LoggerTests.adhoc.xcconfig"; sourceTree = "<group>"; };
+		2643B9F349B81AF7D6CDA904 /* Pods-Logger.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Logger.staging.xcconfig"; path = "Pods/Target Support Files/Pods-Logger/Pods-Logger.staging.xcconfig"; sourceTree = "<group>"; };
+		2755E36B3154300B3E878F1F /* Pods-Logger.calabash.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Logger.calabash.xcconfig"; path = "Pods/Target Support Files/Pods-Logger/Pods-Logger.calabash.xcconfig"; sourceTree = "<group>"; };
 		364AC5871C80985A00CD14CA /* CrashlyticsRecorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrashlyticsRecorder.swift; sourceTree = "<group>"; };
 		364AC5891C809B8C00CD14CA /* ErrorProtocal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorProtocal.swift; sourceTree = "<group>"; };
 		364F95AA1A56580C007C93B6 /* Logger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Logger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -39,6 +44,21 @@
 		364F95BB1A56580C007C93B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		364F95BC1A56580C007C93B6 /* LoggerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerTests.swift; sourceTree = "<group>"; };
 		364F95CF1A565840007C93B6 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		36A1FF9A8F9B03C1DAF90651 /* Pods-Logger.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Logger.adhoc.xcconfig"; path = "Pods/Target Support Files/Pods-Logger/Pods-Logger.adhoc.xcconfig"; sourceTree = "<group>"; };
+		5D0C72F1DE1DE1A24D3A68A6 /* Pods-LoggerTests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoggerTests.staging.xcconfig"; path = "Pods/Target Support Files/Pods-LoggerTests/Pods-LoggerTests.staging.xcconfig"; sourceTree = "<group>"; };
+		60882175882984C7EEBC187E /* Pods-Logger.enterprise.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Logger.enterprise.xcconfig"; path = "Pods/Target Support Files/Pods-Logger/Pods-Logger.enterprise.xcconfig"; sourceTree = "<group>"; };
+		661595E0D8E9CE3362E8371C /* Pods-LoggerTests.calabash.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoggerTests.calabash.xcconfig"; path = "Pods/Target Support Files/Pods-LoggerTests/Pods-LoggerTests.calabash.xcconfig"; sourceTree = "<group>"; };
+		9FF5F978DF68BC4F22BCAE5B /* Pods-LoggerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoggerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LoggerTests/Pods-LoggerTests.release.xcconfig"; sourceTree = "<group>"; };
+		A3018DD35C5DB5A58F765964 /* Pods-LoggerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoggerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LoggerTests/Pods-LoggerTests.debug.xcconfig"; sourceTree = "<group>"; };
+		A58A79233EEE941A849F6D0F /* Pods-Logger.stagecalabash.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Logger.stagecalabash.xcconfig"; path = "Pods/Target Support Files/Pods-Logger/Pods-Logger.stagecalabash.xcconfig"; sourceTree = "<group>"; };
+		AAA3869437CABCCE5AD2ABC9 /* Pods-LoggerTests.stagecalabash.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoggerTests.stagecalabash.xcconfig"; path = "Pods/Target Support Files/Pods-LoggerTests/Pods-LoggerTests.stagecalabash.xcconfig"; sourceTree = "<group>"; };
+		B660191C812033F7239FF1F7 /* Pods-LoggerTests.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoggerTests.test.xcconfig"; path = "Pods/Target Support Files/Pods-LoggerTests/Pods-LoggerTests.test.xcconfig"; sourceTree = "<group>"; };
+		B7AC65222A0033732834EBFC /* Pods-Logger.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Logger.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Logger/Pods-Logger.debug.xcconfig"; sourceTree = "<group>"; };
+		C7A9507FC0056E00FDBAD398 /* Pods-Logger.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Logger.test.xcconfig"; path = "Pods/Target Support Files/Pods-Logger/Pods-Logger.test.xcconfig"; sourceTree = "<group>"; };
+		D7971DFC52F522264C0B4384 /* Pods-Logger.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Logger.release.xcconfig"; path = "Pods/Target Support Files/Pods-Logger/Pods-Logger.release.xcconfig"; sourceTree = "<group>"; };
+		F0CAC6352913DA70EFA72EB5 /* Pods_LoggerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LoggerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA5032EE401A98070199A7DA /* Pods-LoggerTests.enterprise.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoggerTests.enterprise.xcconfig"; path = "Pods/Target Support Files/Pods-LoggerTests/Pods-LoggerTests.enterprise.xcconfig"; sourceTree = "<group>"; };
+		FB76707FE3519D5A5A9003E3 /* Pods_Logger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Logger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA2A6E4C6A0E2EBFB3610320 /* Pods_Logger.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6ADF9BCEDABA72DB046C0F0 /* Pods_LoggerTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +87,8 @@
 				364F95AC1A56580C007C93B6 /* Logger */,
 				364F95B91A56580C007C93B6 /* LoggerTests */,
 				364F95AB1A56580C007C93B6 /* Products */,
+				4729C741D58CFF2B0F06BBC0 /* Pods */,
+				961DBEF16DC8C65650C2B34E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -116,6 +140,38 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		4729C741D58CFF2B0F06BBC0 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B7AC65222A0033732834EBFC /* Pods-Logger.debug.xcconfig */,
+				2755E36B3154300B3E878F1F /* Pods-Logger.calabash.xcconfig */,
+				A58A79233EEE941A849F6D0F /* Pods-Logger.stagecalabash.xcconfig */,
+				C7A9507FC0056E00FDBAD398 /* Pods-Logger.test.xcconfig */,
+				36A1FF9A8F9B03C1DAF90651 /* Pods-Logger.adhoc.xcconfig */,
+				D7971DFC52F522264C0B4384 /* Pods-Logger.release.xcconfig */,
+				60882175882984C7EEBC187E /* Pods-Logger.enterprise.xcconfig */,
+				2643B9F349B81AF7D6CDA904 /* Pods-Logger.staging.xcconfig */,
+				A3018DD35C5DB5A58F765964 /* Pods-LoggerTests.debug.xcconfig */,
+				661595E0D8E9CE3362E8371C /* Pods-LoggerTests.calabash.xcconfig */,
+				AAA3869437CABCCE5AD2ABC9 /* Pods-LoggerTests.stagecalabash.xcconfig */,
+				B660191C812033F7239FF1F7 /* Pods-LoggerTests.test.xcconfig */,
+				230F67BE0D55C84158CA8CBE /* Pods-LoggerTests.adhoc.xcconfig */,
+				9FF5F978DF68BC4F22BCAE5B /* Pods-LoggerTests.release.xcconfig */,
+				FA5032EE401A98070199A7DA /* Pods-LoggerTests.enterprise.xcconfig */,
+				5D0C72F1DE1DE1A24D3A68A6 /* Pods-LoggerTests.staging.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		961DBEF16DC8C65650C2B34E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FB76707FE3519D5A5A9003E3 /* Pods_Logger.framework */,
+				F0CAC6352913DA70EFA72EB5 /* Pods_LoggerTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -134,10 +190,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 364F95C01A56580C007C93B6 /* Build configuration list for PBXNativeTarget "Logger" */;
 			buildPhases = (
+				F5CFF82A7E313F56D23C6C72 /* [CP] Check Pods Manifest.lock */,
 				364F95A51A56580C007C93B6 /* Sources */,
 				364F95A61A56580C007C93B6 /* Frameworks */,
 				364F95A71A56580C007C93B6 /* Headers */,
 				364F95A81A56580C007C93B6 /* Resources */,
+				91BE62AEC56E6F196D21B53B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -152,9 +210,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 364F95C31A56580C007C93B6 /* Build configuration list for PBXNativeTarget "LoggerTests" */;
 			buildPhases = (
+				C6BE56201D131786DBCE1DE4 /* [CP] Check Pods Manifest.lock */,
 				364F95B11A56580C007C93B6 /* Sources */,
 				364F95B21A56580C007C93B6 /* Frameworks */,
 				364F95B31A56580C007C93B6 /* Resources */,
+				2B057139AB35E014749C19AC /* [CP] Embed Pods Frameworks */,
+				3E0775CC4C6C3414695394CE /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -220,6 +281,84 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2B057139AB35E014749C19AC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LoggerTests/Pods-LoggerTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3E0775CC4C6C3414695394CE /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LoggerTests/Pods-LoggerTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		91BE62AEC56E6F196D21B53B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Logger/Pods-Logger-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C6BE56201D131786DBCE1DE4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		F5CFF82A7E313F56D23C6C72 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		364F95A51A56580C007C93B6 /* Sources */ = {
@@ -304,6 +443,7 @@
 		};
 		36160AE71B8BD9A4002D14A7 /* Test */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C7A9507FC0056E00FDBAD398 /* Pods-Logger.test.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -327,6 +467,7 @@
 		};
 		36160AE81B8BD9A4002D14A7 /* Test */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B660191C812033F7239FF1F7 /* Pods-LoggerTests.test.xcconfig */;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -434,6 +575,7 @@
 		};
 		364F95C11A56580C007C93B6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B7AC65222A0033732834EBFC /* Pods-Logger.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -457,6 +599,7 @@
 		};
 		364F95C21A56580C007C93B6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D7971DFC52F522264C0B4384 /* Pods-Logger.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -478,6 +621,7 @@
 		};
 		364F95C41A56580C007C93B6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A3018DD35C5DB5A58F765964 /* Pods-LoggerTests.debug.xcconfig */;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -497,6 +641,7 @@
 		};
 		364F95C51A56580C007C93B6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9FF5F978DF68BC4F22BCAE5B /* Pods-LoggerTests.release.xcconfig */;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -560,6 +705,7 @@
 		};
 		366A042F1B7FA3E200E85947 /* Adhoc */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 36A1FF9A8F9B03C1DAF90651 /* Pods-Logger.adhoc.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -583,6 +729,7 @@
 		};
 		366A04301B7FA3E200E85947 /* Adhoc */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 230F67BE0D55C84158CA8CBE /* Pods-LoggerTests.adhoc.xcconfig */;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -642,6 +789,7 @@
 		};
 		366A04321B7FA3E800E85947 /* Staging */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2643B9F349B81AF7D6CDA904 /* Pods-Logger.staging.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -663,6 +811,7 @@
 		};
 		366A04331B7FA3E800E85947 /* Staging */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5D0C72F1DE1DE1A24D3A68A6 /* Pods-LoggerTests.staging.xcconfig */;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -726,6 +875,7 @@
 		};
 		367537F21D161D9C0058BBBE /* Calabash */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2755E36B3154300B3E878F1F /* Pods-Logger.calabash.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -749,6 +899,7 @@
 		};
 		367537F31D161D9C0058BBBE /* Calabash */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 661595E0D8E9CE3362E8371C /* Pods-LoggerTests.calabash.xcconfig */;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -816,6 +967,7 @@
 		};
 		367537F51D161DA30058BBBE /* StageCalabash */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A58A79233EEE941A849F6D0F /* Pods-Logger.stagecalabash.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -839,6 +991,7 @@
 		};
 		367537F61D161DA30058BBBE /* StageCalabash */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AAA3869437CABCCE5AD2ABC9 /* Pods-LoggerTests.stagecalabash.xcconfig */;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -898,6 +1051,7 @@
 		};
 		367537FB1D161DB20058BBBE /* Enterprise */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 60882175882984C7EEBC187E /* Pods-Logger.enterprise.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -919,6 +1073,7 @@
 		};
 		367537FC1D161DB20058BBBE /* Enterprise */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FA5032EE401A98070199A7DA /* Pods-LoggerTests.enterprise.xcconfig */;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
