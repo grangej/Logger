@@ -89,7 +89,7 @@ public enum Logger: Int {
     
     
     /// Log the given message depending on the curret log level
-    public func log(_ logMessage: String, logPrefix: String?) -> Bool {
+    @discardableResult public func log(_ logMessage: String, logPrefix: String?) -> Bool {
         switch self {
         case .logLevelSuplex:
             logWithMessage("Suplex: \(logMessage)", logPrefix: logPrefix)
