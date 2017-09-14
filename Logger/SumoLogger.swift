@@ -48,6 +48,9 @@ open class SumoLogger: NSObject {
             logRequest.httpBody = body
             
             let logTask = URLSession.shared.dataTask(with: logRequest, completionHandler: { (data, response, error) in
+                
+                self.logs?.removeAll()
+                
                 if let error = error {
                     print("Error loging to sumlogic: \(error.localizedDescription)")
                 }
