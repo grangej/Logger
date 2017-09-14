@@ -197,7 +197,7 @@ public enum Logger: Int {
             
             if Logger.sumoLogicEnabled && !Logger.production {
                 
-                SumoLogger.sharedLogger.logMessage(finalMessage)
+                SumoLogger.sharedLogger.log(message: finalMessage as AnyObject)
 
             }
             
