@@ -8,10 +8,10 @@
 
 import Foundation
 
-public typealias ResultError = protocol<ErrorType, CustomDebugStringConvertible, CustomStringConvertible, ErrorProtocal>
+public typealias ResultError = Error & CustomDebugStringConvertible & CustomStringConvertible & ErrorProtocal
 
 
-public extension ErrorType {
+public extension Error {
     
     func logError() {
         
@@ -30,26 +30,28 @@ public extension ErrorType {
         
     }
     
-    func log(logLevel: Logger) {
+    func log(_ logLevel: Logger) {
         
         if let resultError = self as? ErrorProtocal,
             let debugError = self as? CustomDebugStringConvertible
         {
             
-            logLevel.log(debugError.debugDescription, logPrefix: resultError.errorDomain)
+            _ = logLevel.log(debugError.debugDescription, logPrefix: resultError.errorDomain)
             
         }
         else {
             
             let error = self as NSError
             
-            logLevel.log(error.localizedDescription, logPrefix: error.domain)
+            _ = logLevel.log(error.localizedDescription, logPrefix: error.domain)
         }
     }
 }
 
 public enum Logger: Int {
 
+    public static var production: Bool = true
+    
     public static var sumoLogicEnabled: Bool = true
     
     public static var suplexLoggingEnabled: Bool = true
@@ -87,55 +89,72 @@ public enum Logger: Int {
     
     
     /// Log the given message depending on the curret log level
-    public func log(let logMessage: String, logPrefix: String?) -> Bool {
+    @discardableResult public func log(_ logMessage: String, logPrefix: String?) -> Bool {
         switch self {
-        case .logLevelCritical:
-            logWithMessage("Fatal: \(logMessage)", logPrefix: logPrefix)
-            return true
-        case .logLevelError:
-            if Logger.currentLevel == .logLevelCritical {
-                return false
-            }
-            logWithMessage("Error: \(logMessage)", logPrefix: logPrefix)
-            return true
-        case .logLevelWarn:
-            if Logger.currentLevel == .logLevelCritical ||
-                Logger.currentLevel == .logLevelError {
-                    return false
-            }
-            logWithMessage("Warn: \(logMessage)", logPrefix: logPrefix)
-            return true
-        case .logLevelInfo:
-            if Logger.currentLevel == .logLevelCritical ||
-                Logger.currentLevel == .logLevelError ||
-                Logger.currentLevel == .logLevelWarn {
-                    return false
-            }
-            logWithMessage("Info: \(logMessage)", logPrefix: logPrefix)
-            return true
         case .logLevelSuplex:
-            if Logger.currentLevel == .logLevelCritical ||
-                Logger.currentLevel == .logLevelError ||
-                Logger.currentLevel == .logLevelWarn || Logger.currentLevel == .logLevelInfo {
-                return false
-            }
-            logWithMessage(logMessage, logPrefix: nil)
+            logWithMessage("Suplex: \(logMessage)", logPrefix: logPrefix)
             return true
+        case .logLevelCritical:
             
-        default:
-            if Logger.currentLevel == .logLevelCritical ||
-                Logger.currentLevel == .logLevelError ||
-                Logger.currentLevel == .logLevelWarn ||
-                Logger.currentLevel == .logLevelInfo{
-                    return false
+            switch Logger.currentLevel {
+                
+            case .logLevelCritical, .logLevelSuplex:
+                return false
+            default:
+                logWithMessage("Critical: \(logMessage)", logPrefix: logPrefix)
+                return true
             }
-            logWithMessage("Verbose: \(logMessage)", logPrefix: logPrefix)
-            return true
+            
+        case .logLevelError:
+            
+            switch Logger.currentLevel {
+                
+            case .logLevelCritical, .logLevelSuplex:
+                return false
+            default:
+                logWithMessage("Error: \(logMessage)", logPrefix: logPrefix)
+                return true
+            }
+
+        case .logLevelWarn:
+            
+            switch Logger.currentLevel {
+                
+            case .logLevelCritical, .logLevelError, .logLevelSuplex:
+                return false
+            default:
+                logWithMessage("Warn: \(logMessage)", logPrefix: logPrefix)
+                return true
+            }
+
+        case .logLevelInfo:
+            
+            switch Logger.currentLevel {
+                
+            case .logLevelCritical, .logLevelError, .logLevelWarn, .logLevelSuplex:
+                return false
+            default:
+                logWithMessage("Info: \(logMessage)", logPrefix: logPrefix)
+                return true
+            }
+
+
+        default:
+            
+            switch Logger.currentLevel {
+                
+            case .logLevelCritical, .logLevelError, .logLevelWarn, .logLevelInfo, .logLevelSuplex:
+                return false
+            default:
+                logWithMessage("Verbose: \(logMessage)", logPrefix: logPrefix)
+                return true
+            }
+
         }
     }
     
     
-    internal func logWithMessage(logMessage : String, logPrefix: String?, errorCode: Int? = 0) {
+    internal func logWithMessage(_ logMessage : String, logPrefix: String?, errorCode: Int? = 0) {
         
         let finalMessage: String
         
@@ -166,22 +185,28 @@ public enum Logger: Int {
                 SuplexLogger.sharedLogger.logMessage(finalMessage)
             }
 
+            fallthrough
             
         default:
             
-            if let encodedString = finalMessage.stringByRemovingPercentEncoding {
+            if let encodedString = finalMessage.removingPercentEncoding {
                 
                 CrashlyticsRecorder.sharedInstance?.log(encodedString)
 
             }
             
-            if Logger.sumoLogicEnabled {
+            if Logger.sumoLogicEnabled && !Logger.production {
                 
-                SumoLogger.sharedLogger.logMessage(finalMessage)
+                SumoLogger.sharedLogger.log(message: finalMessage as AnyObject)
 
             }
             
-            print(finalMessage)
+            if !Logger.production {
+                
+                print(finalMessage)
+
+            }
+            
             
         }
     }
@@ -191,9 +216,9 @@ public enum Logger: Int {
 }
 
 extension String {
-    func trunc(length: Int, trailing: String? = "...") -> String {
+    func trunc(_ length: Int, trailing: String? = "...") -> String {
         if self.characters.count > length {
-            return self.substringToIndex(self.startIndex.advancedBy(length)) + (trailing ?? "")
+            return self.substring(to: self.characters.index(self.startIndex, offsetBy: length)) + (trailing ?? "")
         } else {
             return self
         }

@@ -8,63 +8,57 @@
 
 import UIKit
 
-public class SumoLogger: NSObject {
+open class SumoLogger: NSObject {
     
-    public static let sharedLogger = SumoLogger()
-
-    private var logTasks: [NSURLSessionDataTask] = [NSURLSessionDataTask]()
+    open static let sharedLogger = SumoLogger()
+    fileprivate var logRequest: URLRequest?
+    fileprivate var logTasks: [URLSessionDataTask] = [URLSessionDataTask]()
+    fileprivate var batchLimit: Int = 10
+    fileprivate var logs : [[String : AnyObject]]?
     
-    override init() {
-        
-        super.init()
-        
-        guard let url = NSURL(string:"https://prod-idp-logging.lifelock.com/log?category=iOS") else {
-            
+    func setupLogging(url: String) {
+        guard let url = URL(string:url) else {
             return
         }
         
-        self.logRequest = NSMutableURLRequest(URL: url)
-        
-        self.logRequest?.HTTPMethod = "POST"
+        self.logRequest = URLRequest(url: url)
+        self.logRequest?.httpMethod = "POST"
         self.logRequest?.timeoutInterval = 60
-        self.logRequest?.HTTPShouldHandleCookies = true
+        self.logRequest?.httpShouldHandleCookies = true
+        self.logs = nil
     }
-    
-    private var logRequest: NSMutableURLRequest?
-    private var logQueue : NSOperationQueue = NSOperationQueue()
-    
     
     func stopLogging() {
-        self.logQueue.cancelAllOperations()
+        self.logTasks.removeAll()
     }
     
+    func log(message: AnyObject) {
+        let logMessage = ["message" : message]
+        self.logs?.append(logMessage)
+        self.uploadMessage()
+    }
     
-    func logMessage(httpBody:String) {
-        
-        guard let logRequest = self.logRequest else {
-            
+    private func uploadMessage() {
+        guard var logRequest = self.logRequest, let messagesToUpload = self.logs, messagesToUpload.count < self.batchLimit else {
             return
         }
         
-        let aLogString : String = String.localizedStringWithFormat("data=%@", httpBody)
-        guard let anEncodedLogString = aLogString.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet()) else {
-            return
-        }
-                
-        logRequest.HTTPBody = anEncodedLogString.dataUsingEncoding(NSUTF8StringEncoding)
-        
-        let logTask = NSURLSession.sharedSession().dataTaskWithRequest(logRequest) { (data, response, error) in
+        do {
+            let body : Data = try JSONSerialization.data(withJSONObject: messagesToUpload, options: JSONSerialization.WritingOptions.prettyPrinted)
+            logRequest.httpBody = body
             
-            if let error = error {
+            let logTask = URLSession.shared.dataTask(with: logRequest, completionHandler: { (data, response, error) in
                 
-                print("Error loging to sumlogic: \(error.localizedDescription)")
-            }
-
+                self.logs?.removeAll()
+                
+                if let error = error {
+                    print("Error loging to sumlogic: \(error.localizedDescription)")
+                }
+            })
+            self.logTasks.append(logTask)
+            logTask.resume()
+        } catch let anError {
+            anError.logError()
         }
-        
-        self.logTasks.append(logTask)
-        
-        logTask.resume()
-
     }
 }
