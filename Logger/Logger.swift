@@ -2,225 +2,164 @@
 //  Logger.swift
 //  Logger
 //
-//  Created by John Grange on 1/1/15.
-//  Copyright (c) 2015 SD Networks All rights reserved.
+//  Created by John Grange on 10/17/17.
 //
 
 import Foundation
 
-public typealias ResultError = Error & CustomDebugStringConvertible & CustomStringConvertible & ErrorProtocal
+public protocol LoggerOutput {
 
-
-public extension Error {
-    
-    func logError() {
-        
-        self.log(Logger.logLevelError)
-    }
-    
-    func logWarning() {
-        
-        self.log(Logger.logLevelWarn)
-
-    }
-    
-    func logInfo() {
-        
-        self.log(Logger.logLevelInfo)
-        
-    }
-    
-    func log(_ logLevel: Logger) {
-        
-        if let resultError = self as? ErrorProtocal,
-            let debugError = self as? CustomDebugStringConvertible
-        {
-            
-            _ = logLevel.log(debugError.debugDescription, logPrefix: resultError.errorDomain)
-            
-        }
-        else {
-            
-            let error = self as NSError
-            
-            _ = logLevel.log(error.localizedDescription, logPrefix: error.domain)
-        }
-    }
+    /// Log a message to the output, with an optional prefix msg
+    ///
+    /// - Parameters:
+    ///   - message: The text of the message
+    ///   - prefix: The optional prefix
+    /// - Throws: An error if the logging failed
+    func log(message: String, prefix: String?) throws
 }
 
-public enum Logger: Int {
+public typealias FlushCompletionBlock = () -> ()
 
-    public static var production: Bool = true
-    
-    public static var sumoLogicEnabled: Bool = true
-    
-    public static var suplexLoggingEnabled: Bool = true
+public protocol BatchLoggerOutput {
 
-    public static var currentLevel: Logger = .logLevelWarn {
-        
+
+    /// Add support for flushing a queue in a batched logger output
+    ///
+    /// - Parameters:
+    ///   - completed: Completion block to be called when flush is complete for all outputs
+    func flush(completion: FlushCompletionBlock?)
+}
+
+class Logger {
+
+    private var outputs: [LoggerOutput] = [LoggerOutput]()
+
+    public static var defaultLogger: Logger = Logger()
+
+    public static var currentLevel: Logger.Level = .warning {
+
         didSet {
-            
+
             print("Set level to: \(currentLevel)")
         }
     }
-    public static var userIdentifier: String = "No Identifier Set" {
-        
-        didSet {
-            
-            CrashlyticsRecorder.sharedInstance?.setUserIdentifier(userIdentifier)
-        }
-    }
-    public static var userEmail: String = "No Email Set" {
-        
-        didSet {
-            
-            CrashlyticsRecorder.sharedInstance?.setUserEmail(userEmail)
-        }
-    }
-    public static var userName: String = " No Name Set" {
-        
-        didSet {
-            
-            CrashlyticsRecorder.sharedInstance?.setUserName(userName)
-        }
+
+    private var flushGroup = DispatchGroup()
+
+    init() {
+
+        let consoleOutput = ConsoleLogger()
+        self.outputs = [consoleOutput]
     }
 
-    case logLevelCritical, logLevelError, logLevelWarn, logLevelInfo, logLevelVerbose, logLevelSuplex
-    
-    
-    /// Log the given message depending on the curret log level
-    @discardableResult public func log(_ logMessage: String, logPrefix: String?) -> Bool {
-        switch self {
-        case .logLevelSuplex:
-            logWithMessage("Suplex: \(logMessage)", logPrefix: logPrefix)
-            return true
-        case .logLevelCritical:
-            
-            switch Logger.currentLevel {
-                
-            case .logLevelCritical, .logLevelSuplex:
-                return false
-            default:
-                logWithMessage("Critical: \(logMessage)", logPrefix: logPrefix)
-                return true
-            }
-            
-        case .logLevelError:
-            
-            switch Logger.currentLevel {
-                
-            case .logLevelCritical, .logLevelSuplex:
-                return false
-            default:
-                logWithMessage("Error: \(logMessage)", logPrefix: logPrefix)
-                return true
-            }
+    public func add(output: LoggerOutput) {
 
-        case .logLevelWarn:
-            
-            switch Logger.currentLevel {
-                
-            case .logLevelCritical, .logLevelError, .logLevelSuplex:
-                return false
-            default:
-                logWithMessage("Warn: \(logMessage)", logPrefix: logPrefix)
-                return true
+        self.outputs.append(output)
+    }
+
+    public func flush(completion: FlushCompletionBlock? = nil) {
+
+        let flushGroup = self.flushGroup
+        for output in self.outputs {
+
+            if let batchOutput = output as? BatchLoggerOutput {
+
+                flushGroup.enter()
+
+                batchOutput.flush(completion: {
+
+                    flushGroup.leave()
+                })
             }
+        }
 
-        case .logLevelInfo:
-            
-            switch Logger.currentLevel {
-                
-            case .logLevelCritical, .logLevelError, .logLevelWarn, .logLevelSuplex:
-                return false
-            default:
-                logWithMessage("Info: \(logMessage)", logPrefix: logPrefix)
-                return true
-            }
+        flushGroup.notify(queue: DispatchQueue.main) {
 
-
-        default:
-            
-            switch Logger.currentLevel {
-                
-            case .logLevelCritical, .logLevelError, .logLevelWarn, .logLevelInfo, .logLevelSuplex:
-                return false
-            default:
-                logWithMessage("Verbose: \(logMessage)", logPrefix: logPrefix)
-                return true
-            }
-
+            completion?()
         }
     }
-    
-    
-    internal func logWithMessage(_ logMessage : String, logPrefix: String?, errorCode: Int? = 0) {
-        
-        let finalMessage: String
-        
-        let truncatedMessage = logMessage.trunc(200, trailing: "...")
 
-        
-        if let prefixMsg = logPrefix {
-            
-            finalMessage = "\(prefixMsg)-\(truncatedMessage)"
+    public func log(message: String, logPrefix: String? = nil, level: Level = .verbose) -> Bool {
+
+        guard level.shouldLog else {
+
+            return false
         }
-        else {
-            
-            finalMessage = "\(truncatedMessage)"
+
+        var messageLogged = false
+
+        let finalMessage = "\(level.prefix): \(message)"
+
+        for output in self.outputs {
+
+            do {
+
+                try output.log(message: finalMessage, prefix: logPrefix)
+                messageLogged = true
+            }
+            catch let error {
+
+                #if DEBUG
+
+                let className = String(describing: type(of: output))
+                print("Output: \(className) failed: \(error.localizedDescription)")
+                    
+                #endif
+            }
         }
-        
-        switch self {
-            
-        case .logLevelError, .logLevelCritical:
-            
-            CrashlyticsRecorder.sharedInstance?.recordError(truncatedMessage, domain: logPrefix ?? "com.lifelock.Logger")
-            
-            fallthrough
-        
-        case .logLevelSuplex:
-            
-            if Logger.suplexLoggingEnabled {
-                
-                SuplexLogger.sharedLogger.logMessage(finalMessage)
-            }
 
-            fallthrough
-            
-        default:
-            
-            if let encodedString = finalMessage.removingPercentEncoding {
-                
-                CrashlyticsRecorder.sharedInstance?.log(encodedString)
-
-            }
-            
-            if Logger.sumoLogicEnabled && !Logger.production {
-                
-                SumoLogger.sharedLogger.log(message: finalMessage as AnyObject)
-
-            }
-            
-            if !Logger.production {
-                
-                print(finalMessage)
-
-            }
-            
-            
-        }
+        return messageLogged
     }
-    
-    
 
-}
+    public func logCritical(message: String, logPrefix: String? = nil) -> Bool {
 
-extension String {
-    func trunc(_ length: Int, trailing: String? = "...") -> String {
-        if self.characters.count > length {
-            return self.substring(to: self.characters.index(self.startIndex, offsetBy: length)) + (trailing ?? "")
-        } else {
-            return self
+        return self.log(message: message, logPrefix: logPrefix, level: .critical)
+    }
+
+    public func logError(message: String, logPrefix: String? = nil) -> Bool {
+
+        return self.log(message: message, logPrefix: logPrefix, level: .error)
+    }
+
+    public func logWarning(message: String, logPrefix: String? = nil) -> Bool {
+
+        return self.log(message: message, logPrefix: logPrefix, level: .warning)
+    }
+
+    public func logInfo(message: String, logPrefix: String? = nil) -> Bool {
+
+        return self.log(message: message, logPrefix: logPrefix, level: .info)
+    }
+
+    public func logVerbose(message: String, logPrefix: String? = nil) -> Bool {
+
+        return self.log(message: message, logPrefix: logPrefix, level: .verbose)
+    }
+
+    public enum Level: Int {
+
+        case critical = 4, error = 3, warning = 2, info = 1, verbose = 0
+
+        internal var shouldLog: Bool {
+
+            return Logger.currentLevel.rawValue <= self.rawValue
+        }
+
+        internal var prefix: String {
+
+            switch self {
+
+            case .critical:
+                return "Critical"
+            case .error:
+                return "Error"
+            case .warning:
+                return "Warning"
+            case .info:
+                return "Info"
+            case .verbose:
+                return "Verbose"
+            }
         }
     }
 }
