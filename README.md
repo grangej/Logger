@@ -1,23 +1,17 @@
-#Logger
-
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![License](https://img.shields.io/cocoapods/l/RxViewModel.svg?style=flat)](https://github.com/grangej/Logger)
+[![Platform](https://img.shields.io/cocoapods/p/RxViewModel.svg?style=flat)](https://github.com/grangej/Logger)
+# Logger
 
 Logger is a extendable logging platform supporting various severity levels. 
 
-###About
+### About
 
-Logger is used to send logs to both console and remote / crash / collection frameworks. 
+Logger is a consists of the main class Logger and one or more outputs. It also understands the concept 
+batch sending and can flush outputs that support batching. 
 
-The framework consits of the main Logger enum and Extensions that add support for addtional reporters. 
-The reports support the ability to inject frameworks that are not part of the logger platform to prevent any dependnices. Currently we still need to compile in addtional collectors.
+Definining new logger outputs is easy to do, just comply to the protocol LoggerOutput, and optionally BatchLoggerOutput.
 
-*TODO: In the future this needs to made more generic*
+### Requirements
 
-###Documentation
-
-Documentation is generated automaticly by [Jazzy](https://github.com/realm/jazzy)
-
-[Logger Documentation](docs/index.html)
-
-###Requirements
-
-Requires Swift 2.3, currently but will move to Swift 3. At such point we will mark a verison that will be backwards compatible with Swift 2.3.
+Requires Swift 4.0, and is targeting iOS 10+
