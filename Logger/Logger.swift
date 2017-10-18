@@ -32,7 +32,7 @@ public protocol BatchLoggerOutput {
 
 open class Logger {
 
-    public var outputs: [LoggerOutput] = [LoggerOutput]()
+    private var outputs: [LoggerOutput] = [LoggerOutput]()
 
     public static var defaultLogger: Logger = Logger()
 
