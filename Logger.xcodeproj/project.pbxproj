@@ -33,6 +33,8 @@
 		364F95B51A56580C007C93B6 /* LoggerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LoggerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		364F95BB1A56580C007C93B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		364F95BC1A56580C007C93B6 /* LoggerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerTests.swift; sourceTree = "<group>"; };
+		368E69171F96ED5F003CCE5A /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		368E69181F96ED5F003CCE5A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		36DF67851F968DE600DE738E /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		36DF67871F96C0A500DE738E /* ConsoleLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsoleLogger.swift; sourceTree = "<group>"; };
 		36DF67891F96C11600DE738E /* String+Truncate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Truncate.swift"; sourceTree = "<group>"; };
@@ -60,6 +62,8 @@
 		364F95A01A56580C007C93B6 = {
 			isa = PBXGroup;
 			children = (
+				368E69171F96ED5F003CCE5A /* LICENSE */,
+				368E69181F96ED5F003CCE5A /* README.md */,
 				364F95AC1A56580C007C93B6 /* Logger */,
 				364F95B91A56580C007C93B6 /* LoggerTests */,
 				364F95AB1A56580C007C93B6 /* Products */,
