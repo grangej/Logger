@@ -26,17 +26,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1B3AF9E41CC03AA30072D326 /* SumoLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SumoLogger.swift; sourceTree = "<group>"; };
-		1BFA1F441E0B1CAA0093F9AB /* SuplexLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuplexLogger.swift; sourceTree = "<group>"; };
 		364AC5871C80985A00CD14CA /* CrashlyticsRecorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrashlyticsRecorder.swift; sourceTree = "<group>"; };
-		364AC5891C809B8C00CD14CA /* ErrorProtocal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorProtocal.swift; sourceTree = "<group>"; };
 		364F95AA1A56580C007C93B6 /* Logger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Logger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		364F95AE1A56580C007C93B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		364F95AF1A56580C007C93B6 /* Logger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Logger.h; sourceTree = "<group>"; };
 		364F95B51A56580C007C93B6 /* LoggerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LoggerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		364F95BB1A56580C007C93B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		364F95BC1A56580C007C93B6 /* LoggerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerTests.swift; sourceTree = "<group>"; };
-		364F95CF1A565840007C93B6 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		36DF67851F968DE600DE738E /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		36DF67871F96C0A500DE738E /* ConsoleLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsoleLogger.swift; sourceTree = "<group>"; };
 		36DF67891F96C11600DE738E /* String+Truncate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Truncate.swift"; sourceTree = "<group>"; };
@@ -128,11 +124,7 @@
 		36DF67841F968D5200DE738E /* Depreciated */ = {
 			isa = PBXGroup;
 			children = (
-				1B3AF9E41CC03AA30072D326 /* SumoLogger.swift */,
-				1BFA1F441E0B1CAA0093F9AB /* SuplexLogger.swift */,
 				364AC5871C80985A00CD14CA /* CrashlyticsRecorder.swift */,
-				364AC5891C809B8C00CD14CA /* ErrorProtocal.swift */,
-				364F95CF1A565840007C93B6 /* Logger.swift */,
 			);
 			path = Depreciated;
 			sourceTree = "<group>";
