@@ -30,7 +30,7 @@ public protocol BatchLoggerOutput {
     func flush(completion: FlushCompletionBlock?)
 }
 
-public class Logger {
+open class Logger {
 
     private var outputs: [LoggerOutput] = [LoggerOutput]()
 
