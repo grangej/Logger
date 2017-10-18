@@ -30,7 +30,7 @@ public protocol BatchLoggerOutput {
     func flush(completion: FlushCompletionBlock?)
 }
 
-class Logger {
+public class Logger {
 
     private var outputs: [LoggerOutput] = [LoggerOutput]()
 
@@ -46,10 +46,16 @@ class Logger {
 
     private var flushGroup = DispatchGroup()
 
-    init() {
+    convenience public init() {
 
         let consoleOutput = ConsoleLogger()
-        self.outputs = [consoleOutput]
+
+        self.init(outputs: [consoleOutput])
+    }
+
+    public init(outputs: [LoggerOutput]) {
+
+        self.outputs = outputs
     }
 
     public func add(output: LoggerOutput) {

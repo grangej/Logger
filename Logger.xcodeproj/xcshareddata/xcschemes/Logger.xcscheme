@@ -23,7 +23,7 @@
       </BuildActionEntries>
    </BuildAction>
    <TestAction
-      buildConfiguration = "Debug"
+      buildConfiguration = "Release"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       language = ""
@@ -36,6 +36,16 @@
                BlueprintIdentifier = "364F95B41A56580C007C93B6"
                BuildableName = "LoggerTests.xctest"
                BlueprintName = "LoggerTests"
+               ReferencedContainer = "container:Logger.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "368E691E1F97CDDD003CCE5A"
+               BuildableName = "LoggerProductionTests.xctest"
+               BlueprintName = "LoggerProductionTests"
                ReferencedContainer = "container:Logger.xcodeproj">
             </BuildableReference>
          </TestableReference>
