@@ -85,7 +85,7 @@ public class Logger {
         }
     }
 
-    public func log(message: String, logPrefix: String? = nil, level: Level = .verbose) -> Bool {
+    @discardableResult public func log(message: String, logPrefix: String? = nil, level: Level = .verbose) -> Bool {
 
         guard level.shouldLog else {
 
@@ -117,27 +117,27 @@ public class Logger {
         return messageLogged
     }
 
-    public func logCritical(message: String, logPrefix: String? = nil) -> Bool {
+    @discardableResult public func logCritical(message: String, logPrefix: String? = nil) -> Bool {
 
         return self.log(message: message, logPrefix: logPrefix, level: .critical)
     }
 
-    public func logError(message: String, logPrefix: String? = nil) -> Bool {
+    @discardableResult public func logError(message: String, logPrefix: String? = nil) -> Bool {
 
         return self.log(message: message, logPrefix: logPrefix, level: .error)
     }
 
-    public func logWarning(message: String, logPrefix: String? = nil) -> Bool {
+    @discardableResult public func logWarning(message: String, logPrefix: String? = nil) -> Bool {
 
         return self.log(message: message, logPrefix: logPrefix, level: .warning)
     }
 
-    public func logInfo(message: String, logPrefix: String? = nil) -> Bool {
+    @discardableResult public func logInfo(message: String, logPrefix: String? = nil) -> Bool {
 
         return self.log(message: message, logPrefix: logPrefix, level: .info)
     }
 
-    public func logVerbose(message: String, logPrefix: String? = nil) -> Bool {
+    @discardableResult public func logVerbose(message: String, logPrefix: String? = nil) -> Bool {
 
         return self.log(message: message, logPrefix: logPrefix, level: .verbose)
     }
