@@ -8,7 +8,7 @@
 
 import UIKit
 import XCTest
-@testable import Logger
+import Logger
 
 
 class LoggerTests: XCTestCase {
@@ -16,6 +16,12 @@ class LoggerTests: XCTestCase {
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
+
+        let consoleOutput = ConsoleLogger(productionLoggingIsDisabled: false)
+
+        let logger = Logger(outputs: [consoleOutput])
+
+        Logger.defaultLogger = logger
     }
     
     override func tearDown() {

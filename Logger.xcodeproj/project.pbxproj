@@ -10,6 +10,8 @@
 		364F95B01A56580C007C93B6 /* Logger.h in Headers */ = {isa = PBXBuildFile; fileRef = 364F95AF1A56580C007C93B6 /* Logger.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		364F95BD1A56580C007C93B6 /* LoggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364F95BC1A56580C007C93B6 /* LoggerTests.swift */; };
 		368E69161F96C90A003CCE5A /* Logger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 364F95AA1A56580C007C93B6 /* Logger.framework */; };
+		368E69221F97CDDD003CCE5A /* LoggerProductionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368E69211F97CDDD003CCE5A /* LoggerProductionTests.swift */; };
+		368E69241F97CDDD003CCE5A /* Logger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 364F95AA1A56580C007C93B6 /* Logger.framework */; };
 		36DF67861F968DE600DE738E /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DF67851F968DE600DE738E /* Logger.swift */; };
 		36DF67881F96C0A500DE738E /* ConsoleLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DF67871F96C0A500DE738E /* ConsoleLogger.swift */; };
 		36DF678A1F96C11600DE738E /* String+Truncate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DF67891F96C11600DE738E /* String+Truncate.swift */; };
@@ -17,6 +19,13 @@
 
 /* Begin PBXContainerItemProxy section */
 		3600F3E81CC31B1100C24068 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 364F95A11A56580C007C93B6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 364F95A91A56580C007C93B6;
+			remoteInfo = Logger;
+		};
+		368E69251F97CDDD003CCE5A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 364F95A11A56580C007C93B6 /* Project object */;
 			proxyType = 1;
@@ -35,6 +44,9 @@
 		364F95BC1A56580C007C93B6 /* LoggerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerTests.swift; sourceTree = "<group>"; };
 		368E69171F96ED5F003CCE5A /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		368E69181F96ED5F003CCE5A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		368E691F1F97CDDD003CCE5A /* LoggerProductionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LoggerProductionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		368E69211F97CDDD003CCE5A /* LoggerProductionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerProductionTests.swift; sourceTree = "<group>"; };
+		368E69231F97CDDD003CCE5A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		36DF67851F968DE600DE738E /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		36DF67871F96C0A500DE738E /* ConsoleLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsoleLogger.swift; sourceTree = "<group>"; };
 		36DF67891F96C11600DE738E /* String+Truncate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Truncate.swift"; sourceTree = "<group>"; };
@@ -56,6 +68,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		368E691C1F97CDDD003CCE5A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				368E69241F97CDDD003CCE5A /* Logger.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -66,6 +86,7 @@
 				368E69181F96ED5F003CCE5A /* README.md */,
 				364F95AC1A56580C007C93B6 /* Logger */,
 				364F95B91A56580C007C93B6 /* LoggerTests */,
+				368E69201F97CDDD003CCE5A /* LoggerProductionTests */,
 				364F95AB1A56580C007C93B6 /* Products */,
 				368E69151F96C90A003CCE5A /* Frameworks */,
 			);
@@ -76,6 +97,7 @@
 			children = (
 				364F95AA1A56580C007C93B6 /* Logger.framework */,
 				364F95B51A56580C007C93B6 /* LoggerTests.xctest */,
+				368E691F1F97CDDD003CCE5A /* LoggerProductionTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -123,6 +145,15 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		368E69201F97CDDD003CCE5A /* LoggerProductionTests */ = {
+			isa = PBXGroup;
+			children = (
+				368E69211F97CDDD003CCE5A /* LoggerProductionTests.swift */,
+				368E69231F97CDDD003CCE5A /* Info.plist */,
+			);
+			path = LoggerProductionTests;
 			sourceTree = "<group>";
 		};
 		36DF67841F968D5200DE738E /* Depreciated */ = {
@@ -183,12 +214,31 @@
 			productReference = 364F95B51A56580C007C93B6 /* LoggerTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		368E691E1F97CDDD003CCE5A /* LoggerProductionTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 368E69291F97CDDD003CCE5A /* Build configuration list for PBXNativeTarget "LoggerProductionTests" */;
+			buildPhases = (
+				368E691B1F97CDDD003CCE5A /* Sources */,
+				368E691C1F97CDDD003CCE5A /* Frameworks */,
+				368E691D1F97CDDD003CCE5A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				368E69261F97CDDD003CCE5A /* PBXTargetDependency */,
+			);
+			name = LoggerProductionTests;
+			productName = LoggerProductionTests;
+			productReference = 368E691F1F97CDDD003CCE5A /* LoggerProductionTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		364F95A11A56580C007C93B6 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0900;
 				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "";
 				TargetAttributes = {
@@ -201,6 +251,11 @@
 						CreatedOnToolsVersion = 6.2;
 						DevelopmentTeam = 4Z62HT745U;
 						LastSwiftMigration = 0800;
+					};
+					368E691E1F97CDDD003CCE5A = {
+						CreatedOnToolsVersion = 9.0;
+						DevelopmentTeam = 4Z62HT745U;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -218,6 +273,7 @@
 			targets = (
 				364F95A91A56580C007C93B6 /* Logger */,
 				364F95B41A56580C007C93B6 /* LoggerTests */,
+				368E691E1F97CDDD003CCE5A /* LoggerProductionTests */,
 			);
 		};
 /* End PBXProject section */
@@ -231,6 +287,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		364F95B31A56580C007C93B6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		368E691D1F97CDDD003CCE5A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -258,6 +321,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		368E691B1F97CDDD003CCE5A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				368E69221F97CDDD003CCE5A /* LoggerProductionTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -265,6 +336,11 @@
 			isa = PBXTargetDependency;
 			target = 364F95A91A56580C007C93B6 /* Logger */;
 			targetProxy = 3600F3E81CC31B1100C24068 /* PBXContainerItemProxy */;
+		};
+		368E69261F97CDDD003CCE5A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 364F95A91A56580C007C93B6 /* Logger */;
+			targetProxy = 368E69251F97CDDD003CCE5A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -460,6 +536,53 @@
 			};
 			name = Release;
 		};
+		368E69271F97CDDD003CCE5A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 4Z62HT745U;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = LoggerProductionTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.lifelock.LoggerProductionTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		368E69281F97CDDD003CCE5A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 4Z62HT745U;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = LoggerProductionTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.lifelock.LoggerProductionTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -486,6 +609,15 @@
 			buildConfigurations = (
 				364F95C41A56580C007C93B6 /* Debug */,
 				364F95C51A56580C007C93B6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		368E69291F97CDDD003CCE5A /* Build configuration list for PBXNativeTarget "LoggerProductionTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				368E69271F97CDDD003CCE5A /* Debug */,
+				368E69281F97CDDD003CCE5A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

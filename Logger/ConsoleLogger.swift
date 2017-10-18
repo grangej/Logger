@@ -7,26 +7,26 @@
 
 import Foundation
 
-enum ConsoleLoggerError: LocalizedError {
+public enum ConsoleLoggerError: LocalizedError {
 
     case ProductionLoggingIsDisabled
 
-    var errorDescription: String? {
+    public var errorDescription: String? {
 
         return "Production Logging is disabled, run in debug mode"
     }
 }
 
-struct ConsoleLogger: LoggerOutput {
+public struct ConsoleLogger: LoggerOutput {
 
     private let productionLoggingIsDisabled: Bool
 
-    init(productionLoggingIsDisabled: Bool = true) {
+    public init(productionLoggingIsDisabled: Bool = true) {
 
         self.productionLoggingIsDisabled = productionLoggingIsDisabled
     }
 
-    func log(message: String, prefix: String?) throws {
+    public func log(message: String, prefix: String?) throws {
 
         #if !DEBUG
 

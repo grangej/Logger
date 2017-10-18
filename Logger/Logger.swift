@@ -30,7 +30,7 @@ public protocol BatchLoggerOutput {
     func flush(completion: FlushCompletionBlock?)
 }
 
-class Logger {
+public class Logger {
 
     private var outputs: [LoggerOutput] = [LoggerOutput]()
 
@@ -46,10 +46,16 @@ class Logger {
 
     private var flushGroup = DispatchGroup()
 
-    init() {
+    convenience public init() {
 
         let consoleOutput = ConsoleLogger()
-        self.outputs = [consoleOutput]
+
+        self.init(outputs: [consoleOutput])
+    }
+
+    public init(outputs: [LoggerOutput]) {
+
+        self.outputs = outputs
     }
 
     public func add(output: LoggerOutput) {
@@ -79,7 +85,7 @@ class Logger {
         }
     }
 
-    public func log(message: String, logPrefix: String? = nil, level: Level = .verbose) -> Bool {
+    @discardableResult public func log(message: String, logPrefix: String? = nil, level: Level = .verbose) -> Bool {
 
         guard level.shouldLog else {
 
@@ -111,27 +117,27 @@ class Logger {
         return messageLogged
     }
 
-    public func logCritical(message: String, logPrefix: String? = nil) -> Bool {
+    @discardableResult public func logCritical(message: String, logPrefix: String? = nil) -> Bool {
 
         return self.log(message: message, logPrefix: logPrefix, level: .critical)
     }
 
-    public func logError(message: String, logPrefix: String? = nil) -> Bool {
+    @discardableResult public func logError(message: String, logPrefix: String? = nil) -> Bool {
 
         return self.log(message: message, logPrefix: logPrefix, level: .error)
     }
 
-    public func logWarning(message: String, logPrefix: String? = nil) -> Bool {
+    @discardableResult public func logWarning(message: String, logPrefix: String? = nil) -> Bool {
 
         return self.log(message: message, logPrefix: logPrefix, level: .warning)
     }
 
-    public func logInfo(message: String, logPrefix: String? = nil) -> Bool {
+    @discardableResult public func logInfo(message: String, logPrefix: String? = nil) -> Bool {
 
         return self.log(message: message, logPrefix: logPrefix, level: .info)
     }
 
-    public func logVerbose(message: String, logPrefix: String? = nil) -> Bool {
+    @discardableResult public func logVerbose(message: String, logPrefix: String? = nil) -> Bool {
 
         return self.log(message: message, logPrefix: logPrefix, level: .verbose)
     }
