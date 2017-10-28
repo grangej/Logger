@@ -18,10 +18,9 @@ public protocol LoggerOutput {
     func log(message: String, prefix: String?) throws
 }
 
-public typealias FlushCompletionBlock = () -> ()
+public typealias FlushCompletionBlock = () -> Void
 
 public protocol BatchLoggerOutput {
-
 
     /// Add support for flushing a queue in a batched logger output
     ///
@@ -34,7 +33,12 @@ open class Logger {
 
     private var outputs: [LoggerOutput] = [LoggerOutput]()
 
-    public static var defaultLogger: Logger = Logger()
+    public static var _defaultLogger: Logger = Logger()
+
+    open class var defaultLogger: Logger {
+
+        return self._defaultLogger
+    }
 
     public static var currentLevel: Logger.Level = .warning {
 
@@ -102,14 +106,13 @@ open class Logger {
 
                 try output.log(message: finalMessage, prefix: logPrefix)
                 messageLogged = true
-            }
-            catch let error {
+            } catch let error {
 
                 #if DEBUG
 
                 let className = String(describing: type(of: output))
                 print("Output: \(className) failed: \(error.localizedDescription)")
-                    
+
                 #endif
             }
         }

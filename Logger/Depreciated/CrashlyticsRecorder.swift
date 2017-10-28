@@ -6,9 +6,9 @@
 import Foundation
 
 public protocol CrashlyticsProtocol: class {
-    
+
     func log(_ format: String, args: CVaListPointer)
-    
+
     func setUserIdentifier(_ identifier: String?)
     func setUserName(_ name: String?)
     func setUserEmail(_ email: String?)
@@ -16,16 +16,17 @@ public protocol CrashlyticsProtocol: class {
     func setIntValue(_ value: Int32, forKey key: String)
     func setBoolValue(_ value: Bool, forKey key: String)
     func setFloatValue(_ value: Float, forKey key: String)
-    
+
     func recordError(_ error: NSError, withAdditionalUserInfo userInfo: [String : AnyObject]?)
-    
+
 }
 
 /**
- *  An `ErrorType` can conform to this protocol to provide information to be included in an error report to the Crashlytics UI.
+ *  An `ErrorType` can conform to this protocol to provide
+ information to be included in an error report to the Crashlytics UI.
  */
 public protocol ErrorReportable: Error {
-    
+
     /**
      The error's title to be displayed in the "Title" field in the Crashlytics UI.
      
@@ -39,33 +40,34 @@ public protocol ErrorReportable: Error {
      - returns: The user info for the error.
      */
     func errorReportUserInfo() -> [String: AnyObject]?
-    
+
 }
 
 private extension ErrorReportable {
-    
+
     func userInfo() -> [String: AnyObject]? {
         var userInfo = errorReportUserInfo() ?? [:]
         if let title = errorReportTitle() { userInfo["Error Title"] = title as AnyObject? }
-        
+
         return userInfo.isEmpty ? nil : userInfo
     }
-    
+
 }
 
 open class CrashlyticsRecorder {
-    
+
     /// The `CrashlyticsRecorder` shared instance to be used for recording crashes and errors.
     open fileprivate(set) static var sharedInstance: CrashlyticsRecorder?
-    
+
     fileprivate let crashlyticsInstance: CrashlyticsProtocol
-    
+
     fileprivate init(crashlyticsInstance: CrashlyticsProtocol) {
         self.crashlyticsInstance = crashlyticsInstance
     }
-    
+
     /**
-     Creates the `sharedInstance` with the `Crashlytics` shared instance for the application. This method should be called in `application:didFinishLaunchingWithOptions:` after initializing `Crashlytics`.
+     Creates the `sharedInstance` with the `Crashlytics` shared instance for the application.
+     This method should be called in `application:didFinishLaunchingWithOptions:` after initializing `Crashlytics`.
      
      - parameter crashlytics: The `sharedInstance` of `Crashlytics` for the application.
      
@@ -76,7 +78,7 @@ open class CrashlyticsRecorder {
         self.sharedInstance = recorder
         return recorder
     }
-    
+
     /**
      *
      * Add logging that will be sent with your crash data. This logging will be visible in the Crashlytics UI.
@@ -85,7 +87,7 @@ open class CrashlyticsRecorder {
     func log(_ format: String, args: CVarArg...) {
         crashlyticsInstance.log(format, args: getVaList(args))
     }
-    
+
     /**
      *  Specify a user identifier which will be visible in the Crashlytics UI.
      *
@@ -111,7 +113,7 @@ open class CrashlyticsRecorder {
     open func setUserIdentifier(_ identifier: String?) {
         crashlyticsInstance.setUserIdentifier(identifier)
     }
-    
+
     /**
      *  Specify a user name which will be visible in the Crashlytics UI.
      *  Please be mindful of your end-user's privacy and see if setUserIdentifier: can fulfil your needs.
@@ -122,7 +124,7 @@ open class CrashlyticsRecorder {
     open func setUserName(_ name: String?) {
         crashlyticsInstance.setUserName(name)
     }
-    
+
     /**
      *  Specify a user email which will be visible in the Crashlytics UI.
      *  Please be mindful of your end-user's privacy and see if setUserIdentifier: can fulfil your needs.
@@ -134,7 +136,7 @@ open class CrashlyticsRecorder {
     open func setUserEmail(_ email: String?) {
         crashlyticsInstance.setUserEmail(email)
     }
-    
+
     /**
      *  Set a value for a for a key to be associated with your crash data which will be visible in the Crashlytics UI.
      *  When setting an object value, the object is converted to a string. This is typically done by calling
@@ -146,7 +148,7 @@ open class CrashlyticsRecorder {
     open func setObjectValue(_ value: AnyObject?, forKey key: String) {
         crashlyticsInstance.setObjectValue(value, forKey: key)
     }
-    
+
     /**
      *  Set an int value for a key to be associated with your crash data which will be visible in the Crashlytics UI.
      *
@@ -156,7 +158,7 @@ open class CrashlyticsRecorder {
     open func setIntValue(_ value: Int32, forKey key: String) {
         crashlyticsInstance.setIntValue(value, forKey: key)
     }
-    
+
     /**
      *  Set a BOOL value for a key to be associated with your crash data which will be visible in the Crashlytics UI.
      *
@@ -166,7 +168,7 @@ open class CrashlyticsRecorder {
     open func setBoolValue(_ value: Bool, forKey key: String) {
         crashlyticsInstance.setBoolValue(value, forKey: key)
     }
-    
+
     /**
      *  Set a float value for a key to be associated with your crash data which will be visible in the Crashlytics UI.
      *
@@ -176,7 +178,7 @@ open class CrashlyticsRecorder {
     open func setFloatValue(_ value: Float, forKey key: String) {
         crashlyticsInstance.setFloatValue(value, forKey: key)
     }
-    
+
     /**
      *
      * This allows you to record a non-fatal event, described by an NSError object. These events will be grouped and
@@ -189,7 +191,7 @@ open class CrashlyticsRecorder {
     open func recordError(_ error: NSError, withAdditionalUserInfo userInfo: [String: AnyObject]? = nil) {
         crashlyticsInstance.recordError(error, withAdditionalUserInfo: userInfo)
     }
-    
+
     /**
      *
      * This allows you to record a non-fatal event, described by a Swift `ErrorType` object that conforms to the
@@ -202,23 +204,23 @@ open class CrashlyticsRecorder {
     open func recordError(_ error: ErrorReportable) {
         recordError(error as NSError, withAdditionalUserInfo: error.userInfo())
     }
-    
+
     /**
      Records an error to Craslhytics using our own ErrorProtocal
      
      - parameter error: ErrorType that conforms to the ErrorProtocal
      */
     open func recordError(_ error: ErrorProtocal) {
-        
+
         self.recordError(error.errorForCode())
     }
-    
+
     open func recordError(_ errorString: String, domain: String, code: Int = 0) {
-        
+
         let errorInfo: [String: AnyObject] = [NSLocalizedDescriptionKey: errorString as AnyObject]
-        
+
         let error = NSError(domain: domain, code: code, userInfo: errorInfo)
-        
+
         self.recordError(error)
     }
 }

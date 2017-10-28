@@ -9,7 +9,7 @@ import Foundation
 
 public enum ConsoleLoggerError: LocalizedError {
 
-    case ProductionLoggingIsDisabled
+    case productionLoggingIsDisabled
 
     public var errorDescription: String? {
 
@@ -40,12 +40,10 @@ public struct ConsoleLogger: LoggerOutput {
         let finalMessage: String
         let truncatedMessage = message.trunc(200, trailing: "...")
 
-
         if let prefixMsg = prefix {
 
             finalMessage = "\(prefixMsg)-\(truncatedMessage)"
-        }
-        else {
+        } else {
 
             finalMessage = "\(truncatedMessage)"
         }
