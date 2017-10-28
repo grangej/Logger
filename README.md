@@ -3,7 +3,7 @@
 master:
 [![Build Status](https://travis-ci.org/grangej/Logger.svg?branch=master)](https://travis-ci.org/grangej/Logger)
 dev:
-[![Build Status](https://travis-ci.org/grangej/Loggersvg?branch=dev)](https://travis-ci.org/grangej/Logger)
+[![Build Status](https://travis-ci.org/grangej/Logger.svg?branch=dev)](https://travis-ci.org/grangej/Logger)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/grangej/Logger/LICENSE)
 # Logger
