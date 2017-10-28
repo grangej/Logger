@@ -20,7 +20,7 @@ class LoggerTests: XCTestCase {
 
         let logger = Logger(outputs: [consoleOutput])
 
-        Logger.defaultLogger = logger
+        Logger._defaultLogger = logger
     }
 
     override func tearDown() {

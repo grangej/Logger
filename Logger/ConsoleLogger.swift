@@ -32,7 +32,7 @@ public struct ConsoleLogger: LoggerOutput {
 
             if self.productionLoggingIsDisabled {
 
-                throw ConsoleLoggerError.ProductionLoggingIsDisabled
+                throw ConsoleLoggerError.productionLoggingIsDisabled
             }
 
         #endif
