@@ -12,5 +12,5 @@ before_install:
 script:
   - set -o pipefail
   - xcodebuild -workspace Logger.xcworkspace -scheme Logger -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO | xcpretty -c
-  - xctool test -workspace Logger.xcworkspace -scheme Logger -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO | xcpretty -c
+  - xcodebuild -workspace Logger.xcworkspace -scheme Logger -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO test | xcpretty -c
   - swiftlint
