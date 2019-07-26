@@ -9,10 +9,12 @@ import Foundation
 
 extension String {
     func trunc(_ length: Int, trailing: String? = "...") -> String {
-        if self.characters.count > length {
-            return self.substring(to: self.characters.index(self.startIndex, offsetBy: length)) + (trailing ?? "")
+        if self.count > length {
+            let upperBound = self.index(self.startIndex, offsetBy: length)
+            return String(self[..<upperBound]) + (trailing ?? "")
         } else {
             return self
         }
     }
 }
+
