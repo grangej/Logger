@@ -6,16 +6,65 @@
 //
 
 import Foundation
+import os.log
+
+public protocol LogCategory {
+
+    var categoryKey: String { get }
+}
+
+public enum Category: LogCategory {
+
+    case defaultCategory
+    case network
+    case notification
+    case database
+    case api
+    case analytics
+    case login
+    case decoder
+    case conversation
+    case profile
+    case people
+    case threadLock
+    case custom(categoryName: String)
+
+    public var categoryKey: String {
+
+        switch self {
+
+        case .analytics: return "analytics"
+        case .defaultCategory: return "default"
+        case .notification: return "notification"
+        case .network: return "network"
+        case .database: return "database"
+        case .api: return "api"
+        case .decoder: return "decoder"
+        case .login: return "login"
+        case .conversation: return "conversation"
+        case .profile: return "profile"
+        case .people: return "people"
+        case .threadLock: return "threadLock"
+        case .custom(categoryName: let categoryName):
+            return categoryName
+        }
+    }
+
+
+
+
+}
 
 public protocol LoggerOutput {
 
-    /// Log a message to the output, with an optional prefix msg
+    /// Log a message to the output, logger output can use addtional category and type if desired
     ///
     /// - Parameters:
     ///   - message: The text of the message
-    ///   - prefix: The optional prefix
+    ///   - category:Category oof the log
+    ///   - logType: The type of log, debug , error, critical, default
     /// - Throws: An error if the logging failed
-    func log(message: String, prefix: String?) throws
+    func log(message: String, category: LogCategory, logType: OSLogType) throws
 }
 
 public typealias FlushCompletionBlock = () -> Void
@@ -33,19 +82,12 @@ open class Logger {
 
     private var outputs: [LoggerOutput] = [LoggerOutput]()
 
+    public static var logSubSystem = "net.sd-networks.Logger"
     public static var _defaultLogger: Logger = Logger()
 
     open class var defaultLogger: Logger {
 
         return self._defaultLogger
-    }
-
-    public static var currentLevel: Logger.Level = .warning {
-
-        didSet {
-
-            print("Set level to: \(currentLevel)")
-        }
     }
 
     private var flushGroup = DispatchGroup()
@@ -89,23 +131,22 @@ open class Logger {
         }
     }
 
-    @discardableResult public func log(message: String, logPrefix: String? = nil, level: Level = .verbose) -> Bool {
+    public func log(object: Any,
+                   functionName: String = #function,
+                   fileName: String = #file,
+                   lineNumber: Int = #line,
+                   category: LogCategory = Category.defaultCategory,
+                   logType: OSLogType = .debug) {
 
-        guard level.shouldLog else {
 
-            return false
-        }
-
-        var messageLogged = false
-
-        let finalMessage = "\(level.prefix): \(message)"
+        let className = (fileName as NSString).lastPathComponent
+        let finalMessage = "<\(className)> \(functionName) [#\(lineNumber)]| \(object)\n"
 
         for output in self.outputs {
 
             do {
 
-                try output.log(message: finalMessage, prefix: logPrefix)
-                messageLogged = true
+                try output.log(message: finalMessage, category: category, logType: logType)
             } catch let error {
 
                 #if DEBUG
@@ -114,60 +155,6 @@ open class Logger {
                 print("Output: \(className) failed: \(error.localizedDescription)")
 
                 #endif
-            }
-        }
-
-        return messageLogged
-    }
-
-    @discardableResult public func logCritical(message: String, logPrefix: String? = nil) -> Bool {
-
-        return self.log(message: message, logPrefix: logPrefix, level: .critical)
-    }
-
-    @discardableResult public func logError(message: String, logPrefix: String? = nil) -> Bool {
-
-        return self.log(message: message, logPrefix: logPrefix, level: .error)
-    }
-
-    @discardableResult public func logWarning(message: String, logPrefix: String? = nil) -> Bool {
-
-        return self.log(message: message, logPrefix: logPrefix, level: .warning)
-    }
-
-    @discardableResult public func logInfo(message: String, logPrefix: String? = nil) -> Bool {
-
-        return self.log(message: message, logPrefix: logPrefix, level: .info)
-    }
-
-    @discardableResult public func logVerbose(message: String, logPrefix: String? = nil) -> Bool {
-
-        return self.log(message: message, logPrefix: logPrefix, level: .verbose)
-    }
-
-    public enum Level: Int {
-
-        case critical = 4, error = 3, warning = 2, info = 1, verbose = 0
-
-        internal var shouldLog: Bool {
-
-            return Logger.currentLevel.rawValue <= self.rawValue
-        }
-
-        internal var prefix: String {
-
-            switch self {
-
-            case .critical:
-                return "Critical"
-            case .error:
-                return "Error"
-            case .warning:
-                return "Warning"
-            case .info:
-                return "Info"
-            case .verbose:
-                return "Verbose"
             }
         }
     }

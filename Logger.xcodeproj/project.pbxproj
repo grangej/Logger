@@ -15,6 +15,7 @@
 		36DF67861F968DE600DE738E /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DF67851F968DE600DE738E /* Logger.swift */; };
 		36DF67881F96C0A500DE738E /* ConsoleLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DF67871F96C0A500DE738E /* ConsoleLogger.swift */; };
 		36DF678A1F96C11600DE738E /* String+Truncate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DF67891F96C11600DE738E /* String+Truncate.swift */; };
+		5248EE4922EB4AF5002486A7 /* OSLogLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5248EE4822EB4AF5002486A7 /* OSLogLogger.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,7 @@
 		36DF67851F968DE600DE738E /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		36DF67871F96C0A500DE738E /* ConsoleLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsoleLogger.swift; sourceTree = "<group>"; };
 		36DF67891F96C11600DE738E /* String+Truncate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Truncate.swift"; sourceTree = "<group>"; };
+		5248EE4822EB4AF5002486A7 /* OSLogLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSLogLogger.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 				364F95AD1A56580C007C93B6 /* Supporting Files */,
 				36DF67851F968DE600DE738E /* Logger.swift */,
 				36DF67871F96C0A500DE738E /* ConsoleLogger.swift */,
+				5248EE4822EB4AF5002486A7 /* OSLogLogger.swift */,
 				36DF67891F96C11600DE738E /* String+Truncate.swift */,
 			);
 			path = Logger;
@@ -326,6 +329,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5248EE4922EB4AF5002486A7 /* OSLogLogger.swift in Sources */,
 				36DF678A1F96C11600DE738E /* String+Truncate.swift in Sources */,
 				36DF67861F968DE600DE738E /* Logger.swift in Sources */,
 				36DF67881F96C0A500DE738E /* ConsoleLogger.swift in Sources */,

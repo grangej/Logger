@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import os.log
 
 public enum ConsoleLoggerError: LocalizedError {
 
@@ -26,7 +27,7 @@ public struct ConsoleLogger: LoggerOutput {
         self.productionLoggingIsDisabled = productionLoggingIsDisabled
     }
 
-    public func log(message: String, prefix: String?) throws {
+    public func log(message: String, category: Category, logType: OSLogType) throws {
 
         #if !DEBUG
 
@@ -40,13 +41,7 @@ public struct ConsoleLogger: LoggerOutput {
         let finalMessage: String
         let truncatedMessage = message.trunc(200, trailing: "...")
 
-        if let prefixMsg = prefix {
-
-            finalMessage = "\(prefixMsg)-\(truncatedMessage)"
-        } else {
-
-            finalMessage = "\(truncatedMessage)"
-        }
+        finalMessage = "\(truncatedMessage)"    
 
         print(finalMessage)
     }
