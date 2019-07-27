@@ -27,7 +27,18 @@ public struct ConsoleLogger: LoggerOutput {
         self.productionLoggingIsDisabled = productionLoggingIsDisabled
     }
 
-    public func log(message: String, category: Category, logType: OSLogType) throws {
+    // swiftlint:disable:next function_parameter_count
+    public func log(object: Any,
+                    functionName: String,
+                    fileName: String,
+                    lineNumber: Int,
+                    category: LogCategory,
+                    logType: OSLogType) throws {
+
+        let message = LogFormat.verbose.format(object: object,
+                                               functionName: functionName,
+                                               fileName: fileName,
+                                               lineNumber: lineNumber)
 
         #if !DEBUG
 
@@ -41,7 +52,7 @@ public struct ConsoleLogger: LoggerOutput {
         let finalMessage: String
         let truncatedMessage = message.trunc(200, trailing: "...")
 
-        finalMessage = "\(truncatedMessage)"    
+        finalMessage = "\(truncatedMessage)"
 
         print(finalMessage)
     }

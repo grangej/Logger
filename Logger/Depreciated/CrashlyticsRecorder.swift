@@ -17,7 +17,7 @@ public protocol CrashlyticsProtocol: class {
     func setBoolValue(_ value: Bool, forKey key: String)
     func setFloatValue(_ value: Float, forKey key: String)
 
-    func recordError(_ error: NSError, withAdditionalUserInfo userInfo: [String : AnyObject]?)
+    func recordError(_ error: NSError, withAdditionalUserInfo userInfo: [String: AnyObject]?)
 
 }
 

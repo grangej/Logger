@@ -2,3 +2,6 @@ disabled_rules:
 - identifier_name
 identifier_name:
 allowed_symbols: "_"
+line_length:
+    - 160 # warning
+    - 200 # error

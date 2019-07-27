@@ -8,17 +8,17 @@
 import Foundation
 import os.log
 
-public struct OSLogLogger: LoggerOutput {
+public class OSLogLogger: LoggerOutput {
 
-    private static let osLogQueue = DispatchQueue(label: "osLog.accessor")
+    private let osLogQueue = DispatchQueue(label: "osLog.accessor")
 
     private var loggers: [String: OSLog] = [String: OSLog]()
 
-    private mutating func osLog(_ category: LogCategory) -> OSLog {
+    private func osLog(_ category: LogCategory) -> OSLog {
 
         var logger: OSLog!
 
-        OSLogLogger.osLogQueue.sync {
+        osLogQueue.sync {
 
             if let existingLogger = self.loggers[category.categoryKey] {
 
@@ -32,9 +32,21 @@ public struct OSLogLogger: LoggerOutput {
 
         return logger
     }
+// swiftlint:disable:next function_parameter_count
+    public func log(object: Any,
+                    functionName: String,
+                    fileName: String,
+                    lineNumber: Int,
+                    category: LogCategory,
+                    logType: OSLogType) throws {
 
-    public func log(message: String, category: LogCategory, logType: OSLogType) throws {
+        let message = LogFormat.verbose.format(object: object,
+                                               functionName: functionName,
+                                               fileName: fileName,
+                                               lineNumber: lineNumber)
 
+        let logger = osLog(category)
+
+        os_log("%@", log: logger, type: logType, message)
     }
-
 }

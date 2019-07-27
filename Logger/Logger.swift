@@ -49,10 +49,6 @@ public enum Category: LogCategory {
             return categoryName
         }
     }
-
-
-
-
 }
 
 public protocol LoggerOutput {
@@ -60,11 +56,20 @@ public protocol LoggerOutput {
     /// Log a message to the output, logger output can use addtional category and type if desired
     ///
     /// - Parameters:
-    ///   - message: The text of the message
-    ///   - category:Category oof the log
+    ///   - object: Any - The object to log, should be string describable
+    ///   - functionName: Functiona name that log happened
+    ///   - fileName:Filename that the log happened
+    ///   - lineNumber:The line number the log happened
+    ///   - category:Category of the log
     ///   - logType: The type of log, debug , error, critical, default
     /// - Throws: An error if the logging failed
-    func log(message: String, category: LogCategory, logType: OSLogType) throws
+    // swiftlint:disable:next function_parameter_count
+    func log(object: Any,
+             functionName: String,
+             fileName: String,
+             lineNumber: Int,
+             category: LogCategory,
+             logType: OSLogType) throws
 }
 
 public typealias FlushCompletionBlock = () -> Void
@@ -76,6 +81,55 @@ public protocol BatchLoggerOutput {
     /// - Parameters:
     ///   - completed: Completion block to be called when flush is complete for all outputs
     func flush(completion: FlushCompletionBlock?)
+}
+
+/// Helper function to Log to Logger.defaultLogger
+/// - Parameter object: Object we are trying to log, should be string describable
+/// - Parameter category: category of the log, must comply with LogCategory (defaults to Logger.Category.defaultCategory)
+/// - Parameter logType: OSLogType of the log (defaults to .debug)
+public func sdn_log(object: Any,
+                    functionName: String = #function,
+                    fileName: String = #file,
+                    lineNumber: Int = #line,
+                    category: LogCategory = Category.defaultCategory,
+                    logType: OSLogType = .debug) {
+
+    Logger.defaultLogger.log(object: object,
+                             functionName: functionName,
+                             fileName: fileName,
+                             lineNumber: lineNumber,
+                             category: category,
+                             logType: logType)
+}
+
+public protocol LoggerFormat {
+
+    func format(object: Any, functionName: String, fileName: String, lineNumber: Int) -> String
+}
+
+public enum LogFormat: LoggerFormat {
+
+    case `default`
+    case verbose
+    case custom(formatter: LoggerFormat)
+
+    public func format(object: Any, functionName: String, fileName: String, lineNumber: Int) -> String {
+
+        switch self {
+
+        case .default:
+            return "\(object)"
+        case .custom(formatter: let formatter):
+            return formatter.format(object: object,
+                                    functionName: functionName,
+                                    fileName: fileName,
+                                    lineNumber: lineNumber)
+        case .verbose:
+            let className = (fileName as NSString).lastPathComponent
+            let finalMessage = "<\(className)> \(functionName) [#\(lineNumber)]| \(object)\n"
+            return finalMessage
+        }
+    }
 }
 
 open class Logger {
@@ -131,22 +185,26 @@ open class Logger {
         }
     }
 
+    @discardableResult
     public func log(object: Any,
-                   functionName: String = #function,
-                   fileName: String = #file,
-                   lineNumber: Int = #line,
-                   category: LogCategory = Category.defaultCategory,
-                   logType: OSLogType = .debug) {
+                    functionName: String = #function,
+                    fileName: String = #file,
+                    lineNumber: Int = #line,
+                    category: LogCategory = Category.defaultCategory,
+                    logType: OSLogType = .debug) -> Bool {
 
-
-        let className = (fileName as NSString).lastPathComponent
-        let finalMessage = "<\(className)> \(functionName) [#\(lineNumber)]| \(object)\n"
-
+        var allOutputsSuccessful = true
         for output in self.outputs {
 
             do {
 
-                try output.log(message: finalMessage, category: category, logType: logType)
+                try output.log(object: object,
+                               functionName: functionName,
+                               fileName: fileName,
+                               lineNumber: lineNumber,
+                               category: category,
+                               logType: logType)
+
             } catch let error {
 
                 #if DEBUG
@@ -155,7 +213,11 @@ open class Logger {
                 print("Output: \(className) failed: \(error.localizedDescription)")
 
                 #endif
+
+                allOutputsSuccessful = false
             }
         }
+
+        return allOutputsSuccessful
     }
 }

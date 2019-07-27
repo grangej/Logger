@@ -24,7 +24,7 @@ class LoggerProductionTests: XCTestCase {
 
         let logger = Logger()
 
-        XCTAssertFalse(logger.logCritical(message: "Testing"), "Logging to console should fail here")
+        XCTAssertFalse(logger.log(object: "testing"), "Logging to console should fail here")
     }
 
     func testConsoleEnabledInProduction() {
@@ -33,6 +33,6 @@ class LoggerProductionTests: XCTestCase {
 
         let logger = Logger(outputs: [output])
 
-        XCTAssertTrue(logger.logCritical(message: "Testing"), "Logging to console should be successful here")
+        XCTAssertTrue(logger.log(object: "testing"), "Logging to console should be successful here")
     }
 }
