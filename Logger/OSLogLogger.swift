@@ -14,6 +14,9 @@ public class OSLogLogger: LoggerOutput {
 
     private var loggers: [String: OSLog] = [String: OSLog]()
 
+    public init() {
+
+    }
     private func osLog(_ category: LogCategory) -> OSLog {
 
         var logger: OSLog!
