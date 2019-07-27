@@ -36,7 +36,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		364AC5871C80985A00CD14CA /* CrashlyticsRecorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrashlyticsRecorder.swift; sourceTree = "<group>"; };
 		364F95AA1A56580C007C93B6 /* Logger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Logger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		364F95AE1A56580C007C93B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		364F95AF1A56580C007C93B6 /* Logger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Logger.h; sourceTree = "<group>"; };
@@ -107,7 +106,6 @@
 		364F95AC1A56580C007C93B6 /* Logger */ = {
 			isa = PBXGroup;
 			children = (
-				36DF67841F968D5200DE738E /* Depreciated */,
 				364F95AF1A56580C007C93B6 /* Logger.h */,
 				364F95AD1A56580C007C93B6 /* Supporting Files */,
 				36DF67851F968DE600DE738E /* Logger.swift */,
@@ -157,14 +155,6 @@
 				368E69231F97CDDD003CCE5A /* Info.plist */,
 			);
 			path = LoggerProductionTests;
-			sourceTree = "<group>";
-		};
-		36DF67841F968D5200DE738E /* Depreciated */ = {
-			isa = PBXGroup;
-			children = (
-				364AC5871C80985A00CD14CA /* CrashlyticsRecorder.swift */,
-			);
-			path = Depreciated;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
