@@ -100,6 +100,52 @@ public func sdn_log(object: Any,
                              lineNumber: lineNumber,
                              category: category,
                              logType: logType)
+
+}
+
+public func sdn_log(error: Error,
+                      functionName: String = #function,
+                      fileName: String = #file,
+                      lineNumber: Int = #line,
+                      category: Category = .defaultCategory,
+                      rawJSON: String? = nil) {
+
+    let errorDescription: String
+    var category = category
+
+    do {
+        throw error
+    } catch DecodingError.dataCorrupted(let context) {
+
+        category = .decoder
+        errorDescription = "\(context.debugDescription) forPath: \(context.codingPath)"
+
+    } catch DecodingError.keyNotFound(let key, let context) {
+
+        errorDescription = "\(key.stringValue) was not found, \(context.debugDescription) forPath: \(context.codingPath)"
+        category = .decoder
+
+    } catch DecodingError.typeMismatch(let type, let context) {
+
+        errorDescription = "\(type) was expected, \(context.debugDescription) forPath: \(context.codingPath)"
+        category = .decoder
+
+    } catch DecodingError.valueNotFound(let type, let context) {
+
+        errorDescription = "No value was found for \(type), \(context.debugDescription) forPath: \(context.codingPath)"
+        category = .decoder
+
+    } catch let error {
+
+        errorDescription = error.localizedDescription
+    }
+
+        Logger.defaultLogger.log(object: errorDescription,
+                             functionName: functionName,
+                             fileName: fileName,
+                             lineNumber: lineNumber,
+                             category: category,
+                             logType: .error)
 }
 
 public protocol LoggerFormat {
