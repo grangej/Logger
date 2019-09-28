@@ -19,4 +19,4 @@ Definining new logger outputs is easy to do, just comply to the protocol LoggerO
 
 ### Requirements
 
-Requires Swift 4.0, and is targeting iOS 10+
+Requires Swift 5.1, and is targeting iOS 10+
