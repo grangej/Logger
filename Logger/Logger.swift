@@ -107,7 +107,7 @@ public func sdn_log(error: Error,
                       functionName: String = #function,
                       fileName: String = #file,
                       lineNumber: Int = #line,
-                      category: Category = .defaultCategory,
+                      category: LogCategory = Category.defaultCategory,
                       rawJSON: String? = nil) {
 
     let errorDescription: String
