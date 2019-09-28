@@ -117,23 +117,23 @@ public func sdn_log(error: Error,
         throw error
     } catch DecodingError.dataCorrupted(let context) {
 
-        category = .decoder
+        category = Category.decoder
         errorDescription = "\(context.debugDescription) forPath: \(context.codingPath)"
 
     } catch DecodingError.keyNotFound(let key, let context) {
 
         errorDescription = "\(key.stringValue) was not found, \(context.debugDescription) forPath: \(context.codingPath)"
-        category = .decoder
+        category = Category.decoder
 
     } catch DecodingError.typeMismatch(let type, let context) {
 
         errorDescription = "\(type) was expected, \(context.debugDescription) forPath: \(context.codingPath)"
-        category = .decoder
+        category = Category.decoder
 
     } catch DecodingError.valueNotFound(let type, let context) {
 
         errorDescription = "No value was found for \(type), \(context.debugDescription) forPath: \(context.codingPath)"
-        category = .decoder
+        category = Category.decoder
 
     } catch let error {
 
