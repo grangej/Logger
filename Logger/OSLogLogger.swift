@@ -50,6 +50,10 @@ public class OSLogLogger: LoggerOutput {
 
         let logger = osLog(category)
 
+        #if DEBUG
+        os_log("%{public}s", log: logger, type: logType, message)
+        #else
         os_log("%@", log: logger, type: logType, message)
+        #endif
     }
 }
