@@ -7,6 +7,7 @@
 
 import Foundation
 import os.log
+import Logging
 
 public protocol LogCategory {
 
@@ -51,38 +52,6 @@ public enum Category: LogCategory {
     }
 }
 
-public protocol LoggerOutput {
-
-    /// Log a message to the output, logger output can use addtional category and type if desired
-    ///
-    /// - Parameters:
-    ///   - object: Any - The object to log, should be string describable
-    ///   - functionName: Functiona name that log happened
-    ///   - fileName:Filename that the log happened
-    ///   - lineNumber:The line number the log happened
-    ///   - category:Category of the log
-    ///   - logType: The type of log, debug , error, critical, default
-    /// - Throws: An error if the logging failed
-    // swiftlint:disable:next function_parameter_count
-    func log(object: Any,
-             functionName: String,
-             fileName: String,
-             lineNumber: Int,
-             category: LogCategory,
-             logType: OSLogType) throws
-}
-
-public typealias FlushCompletionBlock = () -> Void
-
-public protocol BatchLoggerOutput {
-
-    /// Add support for flushing a queue in a batched logger output
-    ///
-    /// - Parameters:
-    ///   - completed: Completion block to be called when flush is complete for all outputs
-    func flush(completion: FlushCompletionBlock?)
-}
-
 /// Helper function to Log to Logger.defaultLogger
 /// - Parameter object: Object we are trying to log, should be string describable
 /// - Parameter category: category of the log, must comply with LogCategory (defaults to Logger.Category.defaultCategory)
@@ -93,14 +62,8 @@ public func sdn_log(object: Any,
                     lineNumber: Int = #line,
                     category: LogCategory = Category.defaultCategory,
                     logType: OSLogType = .debug) {
-
-    Logger.defaultLogger.log(object: object,
-                             functionName: functionName,
-                             fileName: fileName,
-                             lineNumber: lineNumber,
-                             category: category,
-                             logType: logType)
-
+    
+    Logger().log(level: Logger.Level(osLogType: logType), Logger.Message(stringLiteral: "\(object)"), source: category.categoryKey, file: fileName, function: functionName, line: UInt(lineNumber))
 }
 
 public func sdn_log(error: Error,
@@ -109,161 +72,14 @@ public func sdn_log(error: Error,
                       lineNumber: Int = #line,
                       category: LogCategory = Category.defaultCategory,
                       rawJSON: String? = nil) {
-
-    let errorDescription: String
-    var category = category
-
-    do {
-        throw error
-    } catch DecodingError.dataCorrupted(let context) {
-
-        category = Category.decoder
-        errorDescription = "\(context.debugDescription) forPath: \(context.codingPath)"
-
-    } catch DecodingError.keyNotFound(let key, let context) {
-
-        errorDescription = "\(key.stringValue) was not found, \(context.debugDescription) forPath: \(context.codingPath)"
-        category = Category.decoder
-
-    } catch DecodingError.typeMismatch(let type, let context) {
-
-        errorDescription = "\(type) was expected, \(context.debugDescription) forPath: \(context.codingPath)"
-        category = Category.decoder
-
-    } catch DecodingError.valueNotFound(let type, let context) {
-
-        errorDescription = "No value was found for \(type), \(context.debugDescription) forPath: \(context.codingPath)"
-        category = Category.decoder
-
-    } catch let error {
-
-        errorDescription = error.localizedDescription
+    
+    var metadata: [String: Logger.Metadata.Value] = [:]
+    
+    if let rawJSON = rawJSON {
+        metadata["rawJSON"] = .string(rawJSON)
     }
-
-        Logger.defaultLogger.log(object: errorDescription,
-                             functionName: functionName,
-                             fileName: fileName,
-                             lineNumber: lineNumber,
-                             category: category,
-                             logType: .error)
+    
+    Logger().error(error: error, metadata: metadata, source: nil, category: category, file: fileName, function: functionName, line: UInt(lineNumber))
 }
 
-public protocol LoggerFormat {
-
-    func format(object: Any, functionName: String, fileName: String, lineNumber: Int) -> String
-}
-
-public enum LogFormat: LoggerFormat {
-
-    case `default`
-    case verbose
-    case custom(formatter: LoggerFormat)
-
-    public func format(object: Any, functionName: String, fileName: String, lineNumber: Int) -> String {
-
-        switch self {
-
-        case .default:
-            return "\(object)"
-        case .custom(formatter: let formatter):
-            return formatter.format(object: object,
-                                    functionName: functionName,
-                                    fileName: fileName,
-                                    lineNumber: lineNumber)
-        case .verbose:
-            let className = (fileName as NSString).lastPathComponent
-            let finalMessage = "<\(className)> \(functionName) [#\(lineNumber)]| \(object)\n"
-            return finalMessage
-        }
-    }
-}
-
-open class Logger {
-
-    private var outputs: [LoggerOutput] = [LoggerOutput]()
-
-    public static var logSubSystem = "net.sd-networks.Logger"
-    public static var _defaultLogger: Logger = Logger()
-
-    open class var defaultLogger: Logger {
-
-        return self._defaultLogger
-    }
-
-    private var flushGroup = DispatchGroup()
-
-    convenience public init() {
-
-        let consoleOutput = ConsoleLogger()
-
-        self.init(outputs: [consoleOutput])
-    }
-
-    public init(outputs: [LoggerOutput]) {
-
-        self.outputs = outputs
-    }
-
-    public func add(output: LoggerOutput) {
-
-        self.outputs.append(output)
-    }
-
-    public func flush(completion: FlushCompletionBlock? = nil) {
-
-        let flushGroup = self.flushGroup
-        for output in self.outputs {
-
-            if let batchOutput = output as? BatchLoggerOutput {
-
-                flushGroup.enter()
-
-                batchOutput.flush(completion: {
-
-                    flushGroup.leave()
-                })
-            }
-        }
-
-        flushGroup.notify(queue: DispatchQueue.main) {
-
-            completion?()
-        }
-    }
-
-    @discardableResult
-    public func log(object: Any,
-                    functionName: String = #function,
-                    fileName: String = #file,
-                    lineNumber: Int = #line,
-                    category: LogCategory = Category.defaultCategory,
-                    logType: OSLogType = .debug) -> Bool {
-
-        var allOutputsSuccessful = true
-        for output in self.outputs {
-
-            do {
-
-                try output.log(object: object,
-                               functionName: functionName,
-                               fileName: fileName,
-                               lineNumber: lineNumber,
-                               category: category,
-                               logType: logType)
-
-            } catch let error {
-
-                #if DEBUG
-
-                let className = String(describing: type(of: output))
-                print("Output: \(className) failed: \(error.localizedDescription)")
-
-                #endif
-
-                allOutputsSuccessful = false
-            }
-        }
-
-        return allOutputsSuccessful
-    }
-}
+public typealias Logger = Logging.Logger
