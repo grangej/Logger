@@ -56,6 +56,7 @@ public enum Category: LogCategory {
 /// - Parameter object: Object we are trying to log, should be string describable
 /// - Parameter category: category of the log, must comply with LogCategory (defaults to Logger.Category.defaultCategory)
 /// - Parameter logType: OSLogType of the log (defaults to .debug)
+@available(*, deprecated, message: "Use Logger.log(level:) instead")
 public func sdn_log(object: Any,
                     functionName: String = #function,
                     fileName: String = #file,
@@ -66,6 +67,7 @@ public func sdn_log(object: Any,
     Logger().log(level: Logger.Level(osLogType: logType), Logger.Message(stringLiteral: "\(object)"), source: category.categoryKey, file: fileName, function: functionName, line: UInt(lineNumber))
 }
 
+@available(*, deprecated, message: "Use Logger.error instead")
 public func sdn_log(error: Error,
                       functionName: String = #function,
                       fileName: String = #file,
