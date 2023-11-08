@@ -12,8 +12,8 @@ extension Logging.Logger {
     
     public func error(error: Error,
                       metadata: @autoclosure () -> Logger.Metadata? = nil,
-                      source: String?,
-                      category: LogCategory?,
+                      source: String? = nil,
+                      category: LogCategory? = nil,
                       file: String = #fileID,
                       function: String = #function,
                       line: UInt = #line) {

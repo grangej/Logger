@@ -58,7 +58,11 @@ public struct LoggingOSLog: LogHandler {
 
         let logger = Self.osLog(subsystem: label, category: source)
 
-        var combinedPrettyMetadata = self.prettyMetadata
+        let className = (file as NSString).lastPathComponent
+        let fileMetadata: Logger.Metadata = ["file": .string(className), "function": .string(function), "line#": .string("\(line)")]
+        
+        var combinedPrettyMetadata = self.prettify(self.metadata.merging(fileMetadata) { return $1 })
+        
         if let metadataOverride = metadata, !metadataOverride.isEmpty {
             combinedPrettyMetadata = self.prettify(
                 self.metadata.merging(metadataOverride) {
