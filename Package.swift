@@ -17,13 +17,16 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/apple/swift-log.git", .upToNextMajor(from: "1.5.3")),
+        .package(url: "https://github.com/apple/swift-collections.git", .upToNextMajor(from: "1.0.0"))
     ],
     targets: [
         .target(
             name: "Logger",
             dependencies: [
-                .product(name: "Logging", package: "swift-log")
+                .product(name: "Logging", package: "swift-log"),
+                .product(name: "OrderedCollections", package: "swift-collections")
             ],
-            path: "Logger")
+            path: "Logger"),
+        .testTarget(name: "LoggerTests", dependencies: ["Logger"], path: "LoggerTests")
     ]
 )

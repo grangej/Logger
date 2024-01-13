@@ -44,9 +44,8 @@ extension Logging.Logger {
             errorDescription = "No value was found for \(type), \(context.debugDescription) forPath: \(context.codingPath)"
             category = Category.decoder
 
-        } catch let error {
-
-            errorDescription = error.localizedDescription
+        } catch let error as NSError {
+            errorDescription = error.description
         }
         
         self.error("\(errorDescription)", metadata: metadata(), source: source, category: category, file: file, function: function, line: line)

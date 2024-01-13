@@ -8,6 +8,7 @@
 import Foundation
 import Logging
 import os
+import OrderedCollections
 
 extension Logger.Level {
 
@@ -58,35 +59,51 @@ public struct LoggingOSLog: LogHandler {
 
         let logger = Self.osLog(subsystem: label, category: source)
 
-        let className = (file as NSString).lastPathComponent
-        let fileMetadata: Logger.Metadata = ["file": .string(className), "function": .string(function), "line#": .string("\(line)")]
+        let formedMessage = formedMessage(level: level, message: message, metadata: metadata, source: source, file: file, function: function, line: line)
         
-        var combinedPrettyMetadata = self.prettify(self.metadata.merging(fileMetadata) { return $1 })
-        
-        if let metadataOverride = metadata, !metadataOverride.isEmpty {
-            combinedPrettyMetadata = self.prettify(
-                self.metadata.merging(metadataOverride) {
-                    return $1
-                }
-            )
-        }
-
-        var formedMessage = "[\(level.color)] \(message.description)"
-
-        if combinedPrettyMetadata != nil {
-            formedMessage += " -- " + combinedPrettyMetadata!
-        }
         #if DEBUG
         os_log("%{public}@", log: logger, type: OSLogType.from(loggerLevel: level), formedMessage as NSString)
         #else
         os_log("%@", log: logger, type: OSLogType.from(loggerLevel: level), formedMessage as NSString)
         #endif
     }
+    
+    func formedMessage(level: Logger.Level, message: Logger.Message, metadata: Logger.Metadata?, source: String, file: String, function: String, line: UInt) -> String {
+        
+        let className = (file as NSString).lastPathComponent
+        let fileMetadata: OrderedDictionary<String, Logger.MetadataValue> = ["file": .string(className), "function": .string(function), "line#": .string("\(line)")]
+        
+        
+        var combinedMetadata = self.sortedMetadata
+        if let metadataOverride = metadata, !metadataOverride.isEmpty {
+            combinedMetadata.merge(metadataOverride, uniquingKeysWith: { _, newKey in newKey })
+        }
+        
+        combinedMetadata.merge(fileMetadata, uniquingKeysWith: { original, fileKey in
+            return original
+        })
+        
+        combinedMetadata.merge(fileMetadata, uniquingKeysWith: { original, _ in original })
+        
+        let prettyMetadata = self.prettify(combinedMetadata)
 
-    private var prettyMetadata: String?
-    public var metadata = Logger.Metadata() {
-        didSet {
-            self.prettyMetadata = self.prettify(self.metadata)
+        var formedMessage = "[\(level.color)] \(message.description)"
+
+        if let prettyMetadata = prettyMetadata {
+            formedMessage += " -- " + prettyMetadata
+        }
+        
+        return formedMessage
+    }
+    
+    private var sortedMetadata: OrderedDictionary<String, Logger.MetadataValue> = OrderedDictionary()
+    
+    public var metadata: Logger.Metadata {
+        get {
+            return Dictionary(uniqueKeysWithValues: self.sortedMetadata.map { ($0.key, $0.value) })
+        }
+        set {
+            self.sortedMetadata = OrderedDictionary(uniqueKeysWithValues: newValue.sorted { $0.key < $1.key })
         }
     }
 
@@ -102,7 +119,7 @@ public struct LoggingOSLog: LogHandler {
         }
     }
 
-    private func prettify(_ metadata: Logger.Metadata) -> String? {
+    private func prettify(_ metadata: OrderedDictionary<String, Logger.MetadataValue>) -> String? {
         if metadata.isEmpty {
             return nil
         }
