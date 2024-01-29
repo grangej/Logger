@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import Logger
+@testable import SDNLogger
 
 final class LoggerTests: XCTestCase {
     
@@ -25,6 +25,18 @@ final class LoggerTests: XCTestCase {
         
         XCTAssertEqual(formedMessage, "[ℹ️] Testing -- testRootKey=TestRootValue testKey=TestValue file=test.swift function=testFormedMessageWithMetaDataReturnsCorrectlyFormatedString line#=19")
         
+    }
+    
+    enum TestError: Error {
+        case test
+    }
+    
+    func testLogMacro() {
+        
+        SDNLogger.bootstrap()
+        #log("testing with metadata", level: .debug, metadata: ["Test": .string("test")], category: Category.api)
+        #logCritical("testing")
+        #logError(TestError.test)
     }
 
 }

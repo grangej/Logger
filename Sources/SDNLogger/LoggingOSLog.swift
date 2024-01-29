@@ -10,6 +10,8 @@ import Logging
 import os
 import OrderedCollections
 
+public typealias Logger = Logging.Logger
+
 extension Logger.Level {
 
     var color: String {

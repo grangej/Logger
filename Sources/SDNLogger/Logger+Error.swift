@@ -8,7 +8,7 @@
 import Foundation
 import Logging
 
-extension Logging.Logger {
+extension Logger {
     
     public func error(error: Error,
                       metadata: @autoclosure () -> Logger.Metadata? = nil,
